@@ -26,5 +26,6 @@ int main(){
     cout << left << setfill('-') << setw(width/2) << "Casino Card:" << right << setw(width/2) << randCard << endl;
     cout << endl;
     cout << setfill('*') << setw(width) << '*' << endl;
-    
 }
+
+// test sentence
