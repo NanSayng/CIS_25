@@ -27,5 +27,3 @@ int main(){
     cout << endl;
     cout << setfill('*') << setw(width) << '*' << endl;
 }
-
-// test sentence
