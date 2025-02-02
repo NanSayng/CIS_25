@@ -1,2 +1,2 @@
-# CIS25_class_activities
-This repository is for all the class activities for CIS25 class.
+# CIS25_class
+This repository is for all projects for CIS25 class.
