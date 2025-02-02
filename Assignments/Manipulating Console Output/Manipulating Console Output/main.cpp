@@ -16,9 +16,9 @@ int main(){
     // Set max column widths for each column
     int idMaxSize = 5;
     int nameMaxSize = getNameWidth(name, sizeof(name) / sizeof(name[0]));
-    int balMaxSize = getBalWidth(balance, sizeof(balance) / sizeof(balance[0]));
+    int balMaxSize = getBalWidth(balance, sizeof(balance) / sizeof(balance[0])) + 1; // add one extra space for '$'
     
-    int sizes[] = {idMaxSize, nameMaxSize, balMaxSize + 1}; // add one for '$'
+    int sizes[] = {idMaxSize, nameMaxSize, balMaxSize};
     int totalWidth = idMaxSize + nameMaxSize + balMaxSize + 6; // Total width for the whole report
     int titleSize = ((totalWidth - title.length()) / 2) + title.length(); // For space before title
     
