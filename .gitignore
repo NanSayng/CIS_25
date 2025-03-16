@@ -30,4 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Xcode specific files
+*.xcworkspace/
+*.xcuserdata/
+*.xcodeproj/
 .DS_Store
