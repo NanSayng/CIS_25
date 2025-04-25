@@ -1,5 +1,6 @@
 #include <iostream>
-#include "include/initializeSeats.hpp"
+#include <filesystem>
+#include "include/loadFromSeatsFile.hpp"
 #include "include/displayMenu.hpp"
 #include "utils/getValidChoice.hpp"
 #include "include/viewFlightSeats.hpp"
@@ -9,8 +10,8 @@
 using namespace std;
 
 int main(){
-    initializeSeats();
     string seatsFile = "seats.txt";
+    loadFromSeatsFile(seatsFile);
     displayMenu();
     int choice = getValidChoice();
     switch(choice){
@@ -21,10 +22,10 @@ int main(){
             bookFlightSeat();
             break;
         case 3:
-            cancelBooking();
+            //cancelBooking();
             break;
         case 4:
-            exitProgram();
+            //exitProgram();
             break;
         default:
             break;
