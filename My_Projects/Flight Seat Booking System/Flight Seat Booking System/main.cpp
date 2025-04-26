@@ -1,6 +1,7 @@
 #include <iostream>
 #include <filesystem>
 #include "include/loadFromSeatsFile.hpp"
+#include "include/saveToPassengersFile.hpp"
 #include "include/displayMenu.hpp"
 #include "utils/getValidChoice.hpp"
 #include "include/viewFlightSeats.hpp"
@@ -12,8 +13,10 @@ using namespace std;
 int main(){
     string seatsFile = "seats.txt";
     loadFromSeatsFile(seatsFile, seats);
+    int choice;
+    do{
         displayMenu();
-        int choice = getValidChoice();
+        choice = getValidChoice();
         switch(choice){
             case 1:
                 viewFlightSeats(seatsFile);
@@ -30,6 +33,7 @@ int main(){
             default:
                 break;
         }
+    }while(choice != 4);
 }
 
 /*-------- To check the seats map working fine -------- */

@@ -3,6 +3,7 @@
 #include "seat.hpp"
 #include "data.hpp"
 #include "saveToSeatsFile.hpp"
+#include "saveToPassengersFile.hpp"
 #include <iostream>
 using namespace std;
 

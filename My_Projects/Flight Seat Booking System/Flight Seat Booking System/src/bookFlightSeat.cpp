@@ -60,8 +60,12 @@ void bookFlightSeat(){
             cout << "\nInvalid seat number.\n";
         }
     }
+    // save info to passengers map
     passengers[passportNum] = Passenger(name, phoneNum, passportNum, seatClass, seatNumber);
     
+    // update seats.txt file
     saveToSeatsFile();
-    //saveToPassengersFile();
+    // update passengers.dat file
+    string passengersFile = "passengers.dat";
+    saveToPassengersFile(passengersFile, passengers);
 }
