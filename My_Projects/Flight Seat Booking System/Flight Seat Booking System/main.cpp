@@ -34,6 +34,8 @@ int main(){
                 break;
         }
     }while(choice != 4);
+    
+    return 0;
 }
 
 /*-------- To check the seats map working fine -------- */

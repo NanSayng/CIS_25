@@ -2,11 +2,12 @@
 #define PASSENGER_H
 
 struct Passenger{
-    string name;
-    string contact;
-    string passportNumber;
+    char name[50];
+    int age;
+    char contact[15];
+    char passportNumber[20];
     SeatClass seatClass;
-    string seatNumber;
+    char seatNumber[10];
 };
 
 #endif

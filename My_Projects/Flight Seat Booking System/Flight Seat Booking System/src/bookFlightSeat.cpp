@@ -1,25 +1,31 @@
 #include "bookFlightSeat.hpp"
 
 void bookFlightSeat(){
+    Passenger newPassenger;
     cout << "Booking a Seat...\n\n";
-    string name, phoneNum, passportNum, seatNumber;
-    int age, choice;
+    int choice;
     SeatClass seatClass = SeatClass::Economy;
+    
     cout << "Enter passenger name: ";
     cin.ignore();
-    getline(cin, name);
+    cin.getline(newPassenger.name, sizeof(newPassenger.name));
+    
     cout << "Enter age: ";
-    cin >> age;
+    cin >> newPassenger.age;
+    
     cout << "Enter phone number: ";
-    cin >> phoneNum;
+    cin.ignore();
+    cin.getline(newPassenger.contact, sizeof(newPassenger.contact));
+    
     cout << "Enter passport number: ";
-    cin >> passportNum;
+    cin.getline(newPassenger.passportNumber, sizeof(newPassenger.passportNumber));
     cout << "\n\nSelect seat class:\n";
     cout << "1.\tFirst Class\n";
     cout << "2.\tBusiness Class\n";
     cout << "3.\tEconomy Class\n";
     cout << "Enter your choice: ";
     cin >> choice;
+    
     if(choice == 1){
         seatClass = SeatClass::First;
         cout << "Available seats in First Class:\n";
@@ -45,23 +51,25 @@ void bookFlightSeat(){
             }
         }
     }
+    
     while(true){
         cout << "\n\nEnter seat number to book: ";
-        cin >> seatNumber;
-        if(seats.find(seatNumber) != seats.end()){
-            if(!seats[seatNumber].isBooked && seats[seatNumber].seatClass == seatClass){
-                seats[seatNumber].isBooked = 1;
-                cout << "\nSeat " << seatNumber << " has been successfully booked for " << name << endl;
+        cin.ignore();
+        cin.getline(newPassenger.seatNumber, sizeof(newPassenger.seatNumber));
+        if(seats.find(newPassenger.seatNumber) != seats.end()){
+            if(!seats[newPassenger.seatNumber].isBooked && seats[newPassenger.seatNumber].seatClass == seatClass){
+                seats[newPassenger.seatNumber].isBooked = 1;
+                cout << "\nSeat " << newPassenger.seatNumber << " has been successfully booked for " << newPassenger.name << endl;
                 break;
             }else{
-                cout << "Seat " << seatNumber << " is already booked.\n";
+                cout << "Seat " << newPassenger.seatNumber << " is already booked.\n";
             }
         }else{
             cout << "\nInvalid seat number.\n";
         }
     }
     // save info to passengers map
-    passengers[passportNum] = Passenger(name, phoneNum, passportNum, seatClass, seatNumber);
+    passengers[newPassenger.seatNumber] = newPassenger;
     
     // update seats.txt file
     saveToSeatsFile();
