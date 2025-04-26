@@ -7,13 +7,14 @@ void saveToSeatsFile(){
         return;
     }
     for(auto& seatPair : seats){
-        file << seatPair.second.seatNumber << " ";
         if(seatPair.second.seatClass == SeatClass::First){
-            file << "First " << seatPair.second.isBooked << "\n";
-        }else if(seatPair.second.seatClass == SeatClass::Business){
-            file << "Business " << seatPair.second.isBooked << "\n";
-        }else{
-            file << "Economy " << seatPair.second.isBooked << "\n";
+            file << seatPair.second.seatNumber << " First " << seatPair.second.isBooked << endl;
+        }
+        if(seatPair.second.seatClass == SeatClass::Business){
+            file << seatPair.second.seatNumber << " Business " << seatPair.second.isBooked << endl;
+        }
+        if(seatPair.second.seatClass == SeatClass::Economy){
+            file << seatPair.second.seatNumber << " Economy " << seatPair.second.isBooked << endl;
         }
     }
     file.close();

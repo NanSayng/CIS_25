@@ -38,4 +38,5 @@ void viewFlightSeats(string seatsFile){
             }
         }
     }
+    cout << endl;
 }

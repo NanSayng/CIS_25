@@ -17,7 +17,6 @@ void loadFromSeatsFile(string& seatsFile, map<string, Seat>& seats){
             }else if(seatClassStr == "Business"){
                 seatClass = SeatClass::Business;
             }else{
-    
                 seatClass = SeatClass::Economy;
             }
             seats[seatNum] = {seatClass, seatNum, isBooked};
