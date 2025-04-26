@@ -6,21 +6,21 @@ void loadFromSeatsFile(string& seatsFile, map<string, Seat>& seats){
         cout << "Error opening the seats file.\n";
         return;
     }
-    string seatNum;
-    string seatClassStr;
-    bool isBooked;
+        string seatNum;
+        string seatClassStr;
+        bool isBooked;
     
-    while(file >> seatNum >> seatClassStr >> isBooked){
-        SeatClass seatClass;
-        if(seatClassStr == "First"){
-            seatClass = SeatClass::First;
-        }else if(seatClassStr == "Business"){
-            seatClass = SeatClass::Business;
-        }else{
-            
-            seatClass = SeatClass::Economy;
+        while(file >> seatNum >> seatClassStr >> isBooked){
+            SeatClass seatClass;
+            if(seatClassStr == "First"){
+                seatClass = SeatClass::First;
+            }else if(seatClassStr == "Business"){
+                seatClass = SeatClass::Business;
+            }else{
+    
+                seatClass = SeatClass::Economy;
+            }
+            seats[seatNum] = {seatClass, seatNum, isBooked};
         }
-        seats[seatNum] = {seatClass, seatNum, isBooked};
-    }
     file.close();
 }

@@ -32,9 +32,10 @@ int main(){
     //    }
     for(auto& seatPair : seats){
         cout << seatPair.second.seatNumber << " ";
-        if(seatPair.second.seatClass == SeatClass::First && seatPair.second.isBooked){
+        if(seatPair.second.seatClass == SeatClass::First && !seatPair.second.isBooked){
             cout << "First 0" << endl;
-        }else if(seatPair.second.seatClass == SeatClass::Business && seatPair.second.isBooked){
+        }else if(seatPair.second.seatClass == SeatClass::Business &&
+            !seatPair.second.isBooked){
             cout << "Business 0" << endl;
         }else{
             cout << "Economy 0" << endl;
