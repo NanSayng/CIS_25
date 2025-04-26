@@ -1,6 +1,6 @@
 #include "loadFromSeatsFile.hpp"
 
-void loadFromSeatsFile(string& seatsFile){
+void loadFromSeatsFile(string& seatsFile, map<string, Seat>& seats){
     fstream file(seatsFile, ios::in);
     if(!file.is_open()){
         cout << "Error opening the seats file.\n";
@@ -17,6 +17,7 @@ void loadFromSeatsFile(string& seatsFile){
         }else if(seatClassStr == "Business"){
             seatClass = SeatClass::Business;
         }else{
+            
             seatClass = SeatClass::Economy;
         }
         seats[seatNum] = {seatClass, seatNum, isBooked};

@@ -24,7 +24,7 @@ void bookFlightSeat(){
         seatClass = SeatClass::First;
         cout << "Available seats in First Class:\n";
         for(const auto& seatPair : seats){
-            if(seatPair.second.seatClass == SeatClass::First && seatPair.second.isBooked == false){
+            if(seatPair.second.seatClass == SeatClass::First && !seatPair.second.isBooked){
                 cout << "[" << seatPair.first << "] Available  ";
             }
         }
@@ -32,7 +32,7 @@ void bookFlightSeat(){
         seatClass = SeatClass::Business;
         cout << "Available seats in Business Class:\n";
         for(const auto& seatPair : seats){
-            if(seatPair.second.seatClass == SeatClass::Business && seatPair.second.isBooked == false){
+            if(seatPair.second.seatClass == SeatClass::Business && !seatPair.second.isBooked){
                 cout << "[" << seatPair.first << "] Available  ";
             }
         }
@@ -40,7 +40,7 @@ void bookFlightSeat(){
         seatClass = SeatClass::Economy;
         cout << "Available seats in Economy Class:\n";
         for(const auto& seatPair : seats){
-            if(seatPair.second.seatClass == SeatClass::Economy && seatPair.second.isBooked == false){
+            if(seatPair.second.seatClass == SeatClass::Economy && !seatPair.second.isBooked){
                 cout << "[" << seatPair.first << "] Available  ";
             }
         }
@@ -50,7 +50,7 @@ void bookFlightSeat(){
         cin >> seatNumber;
         if(seats.find(seatNumber) != seats.end()){
             if(!seats[seatNumber].isBooked && seats[seatNumber].seatClass == seatClass){
-                seats[seatNumber].isBooked = true;
+                seats[seatNumber].isBooked = 1;
                 cout << "\nSeat " << seatNumber << " has been successfully booked for " << name << endl;
                 break;
             }else{
@@ -61,6 +61,7 @@ void bookFlightSeat(){
         }
     }
     passengers[passportNum] = Passenger(name, phoneNum, passportNum, seatClass, seatNumber);
+    
+    saveToSeatsFile();
     //saveToPassengersFile();
-    //saveToSeatFile();
 }

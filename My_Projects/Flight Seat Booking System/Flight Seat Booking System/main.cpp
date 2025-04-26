@@ -11,23 +11,33 @@ using namespace std;
 
 int main(){
     string seatsFile = "seats.txt";
-    loadFromSeatsFile(seatsFile);
-    displayMenu();
-    int choice = getValidChoice();
-    switch(choice){
-        case 1:
-            viewFlightSeats(seatsFile);
-            break;
-        case 2:
-            bookFlightSeat();
-            break;
-        case 3:
-            //cancelBooking();
-            break;
-        case 4:
-            //exitProgram();
-            break;
-        default:
-            break;
+    loadFromSeatsFile(seatsFile, seats);
+    //    displayMenu();
+    //    int choice = getValidChoice();
+    //    switch(choice){
+    //        case 1:
+    //            viewFlightSeats(seatsFile);
+    //            break;
+    //        case 2:
+    //            bookFlightSeat();
+    //            break;
+    //        case 3:
+    //            //cancelBooking();
+    //            break;
+    //        case 4:
+    //            //exitProgram();
+    //            break;
+    //        default:
+    //            break;
+    //    }
+    for(auto& seatPair : seats){
+        cout << seatPair.second.seatNumber << " ";
+        if(seatPair.second.seatClass == SeatClass::First && seatPair.second.isBooked){
+            cout << "First 0" << endl;
+        }else if(seatPair.second.seatClass == SeatClass::Business && seatPair.second.isBooked){
+            cout << "Business 0" << endl;
+        }else{
+            cout << "Economy 0" << endl;
+        }
     }
 }

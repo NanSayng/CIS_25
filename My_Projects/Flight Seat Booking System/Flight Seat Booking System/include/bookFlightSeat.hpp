@@ -2,6 +2,7 @@
 #define bookFlightSeat_hpp
 #include "seat.hpp"
 #include "data.hpp"
+#include "saveToSeatsFile.hpp"
 #include <iostream>
 using namespace std;
 

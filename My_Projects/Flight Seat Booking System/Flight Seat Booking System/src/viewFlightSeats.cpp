@@ -9,7 +9,7 @@ void viewFlightSeats(string seatsFile){
     cout << "First Class: \n";
     for(const auto& seatPair : seats){
         if(seatPair.second.seatClass == SeatClass::First){
-            if(seatPair.second.isBooked == false){
+            if(!seatPair.second.isBooked){
                 cout << "[" << seatPair.first << "] Available  ";
             }else{
                 cout << "[" << seatPair.first << "] Booked  ";
@@ -20,7 +20,7 @@ void viewFlightSeats(string seatsFile){
     cout << "Business Class:\n";
     for(const auto& seatPair : seats){
         if(seatPair.second.seatClass == SeatClass::Business){
-            if(seatPair.second.isBooked == false){
+            if(!seatPair.second.isBooked){
                 cout << "[" << seatPair.first << "] Available  ";
             }else{
                 cout << "[" << seatPair.first << "] Booked  ";
@@ -31,7 +31,7 @@ void viewFlightSeats(string seatsFile){
     cout << "Economy Class:\n";
     for(const auto& seatPair : seats){
         if(seatPair.second.seatClass == SeatClass::Economy){
-            if(seatPair.second.isBooked == false){
+            if(!seatPair.second.isBooked){
                 cout << "[" << seatPair.first << "] Available  ";
             }else{
                 cout << "[" << seatPair.first << "] Booked  ";
