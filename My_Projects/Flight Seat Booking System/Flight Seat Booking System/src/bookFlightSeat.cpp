@@ -10,15 +10,27 @@ void bookFlightSeat(){
         cin.getline(newPassenger.name, sizeof(newPassenger.name));
         // convert from char to string to check validation
         string nameStr(newPassenger.name);
-        if(nameStr.empty() || !validateNameInput(nameStr)){
+        if(nameStr.empty() || !isValidName(nameStr)){
             cout << "Invalid name.\n";
         }else{
             break;
         }
     }
-    
-    cout << "Enter age: ";
-    cin >> newPassenger.age;
+    while(true){
+        cout << "Enter age: ";
+        cin >> newPassenger.age;
+        if(cin.fail()){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input. Please enter valid age.\n";
+        }else if(newPassenger.age < 12){
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Under the age of 12 years old cannot book a flight.\n";
+        }else{
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            break;
+        }
+    }
     
     cout << "Enter phone number: ";
     cin.ignore();

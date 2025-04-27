@@ -4,7 +4,7 @@
 #include "data.hpp"
 #include "saveToSeatsFile.hpp"
 #include "saveToPassengersFile.hpp"
-#include "../utils/validateNameInput.hpp"
+#include "../utils/isValidName.hpp"
 #include <iostream>
 using namespace std;
 

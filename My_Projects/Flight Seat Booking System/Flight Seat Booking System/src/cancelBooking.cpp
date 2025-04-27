@@ -6,7 +6,7 @@ void cancelBooking(){
     while(true){
         cout << "Enter passenger name: ";
         cin >> name;
-        if(name.empty() || !validateNameInput(name)){
+        if(name.empty() || !isValidName(name)){
             cout << "Invalid name.\n";
         }else{
             break;
