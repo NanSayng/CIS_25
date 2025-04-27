@@ -7,6 +7,7 @@
 #include "include/viewFlightSeats.hpp"
 #include "include/bookFlightSeat.hpp"
 #include "include/cancelBooking.hpp"
+#include "include/viewPassengersList.hpp"
 #include "include/exitProgram.hpp"
 using namespace std;
 
@@ -28,12 +29,15 @@ int main(){
                 cancelBooking();
                 break;
             case 4:
+                viewPassengersList();
+                break;
+            case 5:
                 //exitProgram();
                 break;
             default:
                 break;
         }
-    }while(choice != 4);
+    }while(choice != 5);
     
     return 0;
 }

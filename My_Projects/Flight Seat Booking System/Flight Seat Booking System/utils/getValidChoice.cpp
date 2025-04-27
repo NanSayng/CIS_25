@@ -5,7 +5,7 @@ int getValidChoice(){
     while(true){
         cout << "\nEnter your choice(1-4): ";
         cin >> choice;
-        if(cin.fail() || choice < 1 || choice > 4){
+        if(cin.fail() || choice < 1 || choice > 5){
             cout << "Invalid choice. Please try again.\n";
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
