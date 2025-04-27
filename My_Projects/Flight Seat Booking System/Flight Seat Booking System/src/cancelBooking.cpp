@@ -16,7 +16,7 @@ void cancelBooking(){
     cin >> passportNum;
     
     auto it = passengers.find(passportNum);
-    if(it != passengers.end()){
+    if(it != passengers.end() && name == (*it).second->name){
         cout << "Booking found: Seat " << (*it).second->seatNumber << endl;
         cout << "Are you sure you want to cancel this booking? (y/n): ";
         cin >> ch;
@@ -35,6 +35,8 @@ void cancelBooking(){
             }
             cout << "Booking for " << name << " has been cancelled successfully.\n";
         }
+    }else if(it != passengers.end() && name != (*it).second->name){
+        cout << "Name and passport number doesn't match.\n";
     }else{
         cout << "No booking found under that name and passport number.\n";
     }
