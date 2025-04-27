@@ -6,6 +6,7 @@
 #include "saveToPassengersFile.hpp"
 #include "data.hpp"
 #include "../utils/isValidName.hpp"
+#include "../utils/isValidPassNum.hpp"
 using namespace std;
 
 void cancelBooking();

@@ -28,6 +28,8 @@ void bookFlightSeat(){
         }else if(newPassenger.age < 12){
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Under the age of 12 years old cannot book a flight.\n";
+        }else if(newPassenger.age > 100){
+            cout << "Too old to book the flight.\n";
         }else{
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             break;
@@ -89,11 +91,20 @@ void bookFlightSeat(){
             }
         }
     }
-    
+    cin.ignore();
     while(true){
-        cout << "\n\nEnter seat number to book: ";
-        cin.ignore();
-        cin.getline(newPassenger.seatNumber, sizeof(newPassenger.seatNumber));
+        // get valid seat number
+        while(true){
+            cout << "\n\nEnter seat number to book (1A - 5C): ";
+            cin.getline(newPassenger.seatNumber, sizeof(newPassenger.seatNumber));
+            // convert from char to string to check validation
+            string seatNumStr(newPassenger.seatNumber);
+            if(seatNumStr.empty() || !isValidSeatNum(seatNumStr)){
+                cout << "Invalid seat number. Please try agin.\n";
+            }else{
+                break;
+            }
+        }
         if(seats.find(newPassenger.seatNumber) != seats.end()){
             if(!seats[newPassenger.seatNumber]->isBooked && seats[newPassenger.seatNumber]->seatClass == newPassenger.seatClass){
                 seats[newPassenger.seatNumber]->isBooked = 1;

@@ -7,6 +7,7 @@
 #include "../utils/isValidName.hpp"
 #include "../utils/isValidContact.hpp"
 #include "../utils/isValidPassNum.hpp"
+#include "../utils/isValidSeatNum.hpp"
 #include <iostream>
 using namespace std;
 

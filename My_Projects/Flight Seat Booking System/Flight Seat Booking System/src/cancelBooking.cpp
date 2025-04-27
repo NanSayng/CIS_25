@@ -3,6 +3,7 @@
 void cancelBooking(){
     string name, passportNum;
     char ch;
+    // get valid name
     while(true){
         cout << "Enter passenger name: ";
         cin >> name;
@@ -12,9 +13,16 @@ void cancelBooking(){
             break;
         }
     }
-    cout << "Enter passport number: ";
-    cin >> passportNum;
-    
+    // get valid passport number
+    while(true){
+        cout << "Enter passport number: ";
+        cin >> passportNum;
+        if(passportNum.empty() || !isValidPassNum(passportNum)){
+            cout << "Invalid passport number. Enter length of 6 to 9.\n";
+        }else{
+            break;
+        }
+    }
     auto it = passengers.find(passportNum);
     if(it != passengers.end() && name == (*it).second->name){
         cout << "Booking found: Seat " << (*it).second->seatNumber << endl;
