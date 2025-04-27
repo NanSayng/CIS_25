@@ -44,33 +44,3 @@ int main(){
     return 0;
 }
 
-/*-------- To check the seats map working fine -------- */
-//for(auto& seatPair : seats){
-//    if(seatPair.second.seatClass == SeatClass::First){
-//        cout << seatPair.second.seatNumber << " First ";
-//        if(seatPair.second.isBooked){
-//            cout << "1" << endl;
-//        }else{
-//            cout << "0" << endl;
-//        }
-//        
-//    }
-//    if(seatPair.second.seatClass == SeatClass::Business){
-//        cout << seatPair.second.seatNumber << " Business ";
-//        if(seatPair.second.isBooked){
-//            cout << "1" << endl;
-//        }else{
-//            cout << "0" << endl;
-//        }
-//    }
-//    if(seatPair.second.seatClass == SeatClass::Economy){
-//        cout << seatPair.second.seatNumber << " Economy ";
-//        if(seatPair.second.isBooked){
-//            cout << "1" << endl;
-//        }else{
-//            cout << "0" << endl;
-//        }
-//        
-//    }
-//}
-

@@ -10,13 +10,13 @@ void cancelBooking(){
     
     auto it = passengers.find(passportNum);
     if(it != passengers.end()){
-        cout << "Booking found: Seat " << (*it).second.seatNumber << endl;
+        cout << "Booking found: Seat " << (*it).second->seatNumber << endl;
         cout << "Are you sure you want to cancel this booking? (y/n): ";
         cin >> ch;
         if(ch == 'y'){
             for(auto& seatPair : seats){
-                if(seatPair.second.seatNumber == (*it).second.seatNumber){
-                    seatPair.second.isBooked = 0;
+                if(seatPair.second->seatNumber == (*it).second->seatNumber){
+                    seatPair.second->isBooked = 0;
                     // upgrade seats file
                     saveToSeatsFile();
                     // remove passenger from unordered_map
@@ -26,7 +26,7 @@ void cancelBooking(){
                     break;
                 }
             }
-            cout << "Booking for " << name << " has been cancelled. Seat " << (*it).second.seatNumber << " is not available.\n";
+            cout << "Booking for " << name << " has been cancelled. Seat " << (*it).second->seatNumber << " is not available.\n";
         }else if(ch == 'n'){
             
         }

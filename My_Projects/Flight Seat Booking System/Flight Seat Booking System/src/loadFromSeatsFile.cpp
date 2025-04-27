@@ -1,6 +1,6 @@
 #include "loadFromSeatsFile.hpp"
 
-void loadFromSeatsFile(string& seatsFile, map<string, Seat>& seats){
+void loadFromSeatsFile(string& seatsFile, map<string, shared_ptr<Seat>>& seats){
     fstream file(seatsFile, ios::in);
     if(!file.is_open()){
         cout << "Error opening the seats file.\n";
@@ -19,7 +19,7 @@ void loadFromSeatsFile(string& seatsFile, map<string, Seat>& seats){
             }else{
                 seatClass = SeatClass::Economy;
             }
-            seats[seatNum] = {seatClass, seatNum, isBooked};
+            seats[seatNum] = make_shared<Seat>(Seat{seatClass, seatNum, isBooked});
         }
     file.close();
 }

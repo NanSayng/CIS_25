@@ -5,10 +5,13 @@ void viewPassengersList(){
     cout << "\nPassengers list: \n";
     if(!passengers.empty()){
         for(auto& passengerPair: passengers){
-            cout << num << ". " << passengerPair.second.name << " | Age: " << passengerPair.second.age << " | Phone: " << passengerPair.second.contact << " | Passport: " << passengerPair.second.passportNumber << " | Seat: " << passengerPair.second.seatNumber ;
-            if(passengerPair.second.seatClass == SeatClass::First){
+            // dereference unique_ptr to access each Passenger object
+            auto& passenger = *passengerPair.second;
+            // display passenger information
+            cout << num << ". " << passenger.name << " | Age: " << passenger.age << " | Phone: " << passenger.contact << " | Passport: " << passenger.passportNumber << " | Seat: " << passenger.seatNumber ;
+            if(passenger.seatClass == SeatClass::First){
                 cout << " (First class)\n";
-            }else if(passengerPair.second.seatClass == SeatClass::Business){
+            }else if(passenger.seatClass == SeatClass::Business){
                 cout << " (Business class)\n";
             }else{
                 cout << " (Economy class)\n";

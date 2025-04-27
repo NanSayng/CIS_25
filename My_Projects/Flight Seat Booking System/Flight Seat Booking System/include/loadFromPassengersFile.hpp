@@ -5,6 +5,6 @@
 #include <iostream>
 using namespace std;
 
-void loadFromPassengersFile(unordered_map<string, Passenger>& passengers);
+void loadFromPassengersFile(unordered_map<string, unique_ptr<Passenger>>& passengers);
 
 #endif

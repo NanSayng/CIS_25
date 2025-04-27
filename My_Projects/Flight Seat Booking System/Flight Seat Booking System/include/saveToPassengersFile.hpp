@@ -5,6 +5,6 @@
 #include "data.hpp"
 using namespace std;
 
-void saveToPassengersFile(unordered_map<string, Passenger>& passengers);
+void saveToPassengersFile(unordered_map<string, unique_ptr<Passenger>>& passengers);
 
 #endif

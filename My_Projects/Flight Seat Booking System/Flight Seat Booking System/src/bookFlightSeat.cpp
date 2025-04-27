@@ -4,7 +4,7 @@ void bookFlightSeat(){
     Passenger newPassenger;
     cout << "Booking a Seat...\n\n";
     int choice;
-    SeatClass seatClass = SeatClass::Economy;
+    //SeatClass seatClass = SeatClass::Economy;
     
     cout << "Enter passenger name: ";
     cin.ignore();
@@ -19,6 +19,7 @@ void bookFlightSeat(){
     
     cout << "Enter passport number: ";
     cin.getline(newPassenger.passportNumber, sizeof(newPassenger.passportNumber));
+    
     cout << "\n\nSelect seat class:\n";
     cout << "1.\tFirst Class\n";
     cout << "2.\tBusiness Class\n";
@@ -27,26 +28,26 @@ void bookFlightSeat(){
     cin >> choice;
     
     if(choice == 1){
-        seatClass = SeatClass::First;
+        newPassenger.seatClass = SeatClass::First;
         cout << "Available seats in First Class:\n";
         for(const auto& seatPair : seats){
-            if(seatPair.second.seatClass == SeatClass::First && !seatPair.second.isBooked){
+            if(seatPair.second->seatClass == SeatClass::First && !seatPair.second->isBooked){
                 cout << "[" << seatPair.first << "] Available  ";
             }
         }
     }else if(choice == 2){
-        seatClass = SeatClass::Business;
+        newPassenger.seatClass = SeatClass::Business;
         cout << "Available seats in Business Class:\n";
         for(const auto& seatPair : seats){
-            if(seatPair.second.seatClass == SeatClass::Business && !seatPair.second.isBooked){
+            if(seatPair.second->seatClass == SeatClass::Business && !seatPair.second->isBooked){
                 cout << "[" << seatPair.first << "] Available  ";
             }
         }
     }else if(choice == 3){
-        seatClass = SeatClass::Economy;
+        newPassenger.seatClass = SeatClass::Economy;
         cout << "Available seats in Economy Class:\n";
         for(const auto& seatPair : seats){
-            if(seatPair.second.seatClass == SeatClass::Economy && !seatPair.second.isBooked){
+            if(seatPair.second->seatClass == SeatClass::Economy && !seatPair.second->isBooked){
                 cout << "[" << seatPair.first << "] Available  ";
             }
         }
@@ -57,8 +58,8 @@ void bookFlightSeat(){
         cin.ignore();
         cin.getline(newPassenger.seatNumber, sizeof(newPassenger.seatNumber));
         if(seats.find(newPassenger.seatNumber) != seats.end()){
-            if(!seats[newPassenger.seatNumber].isBooked && seats[newPassenger.seatNumber].seatClass == seatClass){
-                seats[newPassenger.seatNumber].isBooked = 1;
+            if(!seats[newPassenger.seatNumber]->isBooked && seats[newPassenger.seatNumber]->seatClass == newPassenger.seatClass){
+                seats[newPassenger.seatNumber]->isBooked = 1;
                 cout << "\nSeat " << newPassenger.seatNumber << " has been successfully booked for " << newPassenger.name << endl;
                 break;
             }else{
@@ -69,7 +70,7 @@ void bookFlightSeat(){
         }
     }
     // save info to passengers map
-    passengers[newPassenger.passportNumber] = newPassenger;
+    passengers[newPassenger.passportNumber] = make_unique<Passenger>(newPassenger);
     
     // update seats.txt file
     saveToSeatsFile();
