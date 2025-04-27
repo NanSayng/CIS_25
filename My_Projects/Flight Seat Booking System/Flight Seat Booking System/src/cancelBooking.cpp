@@ -26,9 +26,7 @@ void cancelBooking(){
                     break;
                 }
             }
-            cout << "Booking for " << name << " has been cancelled. Seat " << (*it).second->seatNumber << " is not available.\n";
-        }else if(ch == 'n'){
-            
+            cout << "Booking for " << name << " has been cancelled successfully.\n";
         }
     }else{
         cout << "No booking found under that name and passport number.\n";

@@ -34,7 +34,7 @@ int main(){
                 viewPassengersList();
                 break;
             case 5:
-                //exitProgram();
+                exitProgram();
                 break;
             default:
                 break;
