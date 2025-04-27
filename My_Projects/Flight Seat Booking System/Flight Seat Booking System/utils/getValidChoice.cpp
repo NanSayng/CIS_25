@@ -1,17 +1,20 @@
 #include "getValidChoice.hpp"
 
 int getValidChoice(){
+    string input;
     int choice;
+    // allowed only 1-8 number
+    regex reg(R"(^[1-5]$)");
     while(true){
-        cout << "\nEnter your choice(1-4): ";
-        cin >> choice;
-        if(cin.fail() || choice < 1 || choice > 5){
-            cout << "Invalid choice. Please try again.\n";
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Enter your choice (1-5): ";
+        cin >> input;
+        // check if choice is invalid or empty
+        if(input.empty() || !regex_match(input,reg)){
+            cout << "Invalid choice.\n";
         }else{
             break;
         }
     }
+    choice = stoi(input);
     return choice;
 }
