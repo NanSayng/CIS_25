@@ -3,8 +3,15 @@
 void cancelBooking(){
     string name, passportNum;
     char ch;
-    cout << "Enter passenger name: ";
-    cin >> name;
+    while(true){
+        cout << "Enter passenger name: ";
+        cin >> name;
+        if(name.empty() || !validateNameInput(name)){
+            cout << "Invalid name.\n";
+        }else{
+            break;
+        }
+    }
     cout << "Enter passport number: ";
     cin >> passportNum;
     

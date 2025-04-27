@@ -4,11 +4,18 @@ void bookFlightSeat(){
     Passenger newPassenger;
     cout << "Booking a Seat...\n\n";
     int choice;
-    //SeatClass seatClass = SeatClass::Economy;
-    
-    cout << "Enter passenger name: ";
-    cin.ignore();
-    cin.getline(newPassenger.name, sizeof(newPassenger.name));
+    while(true){
+        cout << "Enter passenger name: ";
+        cin.ignore();
+        cin.getline(newPassenger.name, sizeof(newPassenger.name));
+        // convert from char to string to check validation
+        string nameStr(newPassenger.name);
+        if(nameStr.empty() || !validateNameInput(nameStr)){
+            cout << "Invalid name.\n";
+        }else{
+            break;
+        }
+    }
     
     cout << "Enter age: ";
     cin >> newPassenger.age;
