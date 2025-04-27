@@ -2,8 +2,16 @@
 
 void exitProgram(){
     string input;
-    cout << "Are you sure you want to exit? (y/n): ";
-    cin >> input;
+    // get valid input
+    while(true){
+        cout << "Are you sure you want to exit? (y/n): ";
+        cin >> input;
+        if(input.empty() || !isValidChar(input)){
+            cout << "Invalid input. Please try again.\n";
+        }else{
+            break;
+        }
+    }
     if(input == "Y" || input == "y"){
         cout << "I hope you a wonderful day. Bye!\n";
         exit(0);

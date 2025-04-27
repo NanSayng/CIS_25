@@ -1,8 +1,7 @@
 #include "cancelBooking.hpp"
 
 void cancelBooking(){
-    string name, passportNum;
-    char ch;
+    string name, passportNum, input;
     // get valid name
     while(true){
         cout << "Enter passenger name: ";
@@ -26,9 +25,17 @@ void cancelBooking(){
     auto it = passengers.find(passportNum);
     if(it != passengers.end() && name == (*it).second->name){
         cout << "Booking found: Seat " << (*it).second->seatNumber << endl;
-        cout << "Are you sure you want to cancel this booking? (y/n): ";
-        cin >> ch;
-        if(ch == 'y'){
+        // check user input
+        while(true){
+            cout << "Are you sure you want to cancel this booking? (y/n): ";
+            cin >> input;
+            if(input.empty() || !isValidChar(input)){
+                cout << "Invalid input.\n";
+            }else{
+                break;
+            }
+        }
+        if(input == "y" || input == "Y"){
             for(auto& seatPair : seats){
                 if(seatPair.second->seatNumber == (*it).second->seatNumber){
                     seatPair.second->isBooked = 0;
@@ -41,7 +48,33 @@ void cancelBooking(){
                     break;
                 }
             }
-            cout << "Booking for " << name << " has been cancelled successfully.\n";
+            cout << "\nBooking for " << name << " has been cancelled successfully.\n";
+        }else{
+            int choice;
+            do{
+                string seatsFile = "seats.txt";
+                displayMenu();
+                choice = getValidChoice();
+                switch(choice){
+                    case 1:
+                        viewFlightSeats(seatsFile);
+                        break;
+                    case 2:
+                        bookFlightSeat();
+                        break;
+                    case 3:
+                        cancelBooking();
+                        break;
+                    case 4:
+                        viewPassengersList();
+                        break;
+                    case 5:
+                        exitProgram();
+                        break;
+                    default:
+                        break;
+                }
+            }while(choice != 5);
         }
     }else if(it != passengers.end() && name != (*it).second->name){
         cout << "Name and passport number doesn't match.\n";

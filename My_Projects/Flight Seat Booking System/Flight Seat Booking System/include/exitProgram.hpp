@@ -4,6 +4,7 @@
 #include "viewFlightSeats.hpp"
 #include "bookFlightSeat.hpp"
 #include "../utils/getValidChoice.hpp"
+#include "../utils/isValidChar.hpp"
 #include "cancelBooking.hpp"
 #include "viewPassengersList.hpp"
 #include <iostream>
