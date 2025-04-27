@@ -25,7 +25,7 @@ int main(){
                 bookFlightSeat();
                 break;
             case 3:
-                //cancelBooking();
+                cancelBooking();
                 break;
             case 4:
                 //exitProgram();

@@ -69,11 +69,10 @@ void bookFlightSeat(){
         }
     }
     // save info to passengers map
-    passengers[newPassenger.seatNumber] = newPassenger;
+    passengers[newPassenger.passportNumber] = newPassenger;
     
     // update seats.txt file
     saveToSeatsFile();
     // update passengers.dat file
-    string passengersFile = "passengers.dat";
-    saveToPassengersFile(passengersFile, passengers);
+    saveToPassengersFile(passengers);
 }
