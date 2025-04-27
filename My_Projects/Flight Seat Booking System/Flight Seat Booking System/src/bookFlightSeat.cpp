@@ -4,6 +4,7 @@ void bookFlightSeat(){
     Passenger newPassenger;
     cout << "Booking a Seat...\n\n";
     int choice;
+    // get valid name
     while(true){
         cout << "Enter passenger name: ";
         cin.ignore();
@@ -16,6 +17,7 @@ void bookFlightSeat(){
             break;
         }
     }
+    // get valid age
     while(true){
         cout << "Enter age: ";
         cin >> newPassenger.age;
@@ -31,10 +33,18 @@ void bookFlightSeat(){
             break;
         }
     }
-    
-    cout << "Enter phone number: ";
-    cin.ignore();
-    cin.getline(newPassenger.contact, sizeof(newPassenger.contact));
+    // get valid contact number
+    while(true){
+        cout << "Enter phone number (510*******): ";
+        cin.getline(newPassenger.contact, sizeof(newPassenger.contact));
+        // convert from char to string to check validation
+        string contactStr(newPassenger.contact);
+        if(contactStr.empty() || !isValidContact(contactStr)){
+            cout << "Invalid contact. Please enter 10 digits number.\n";
+        }else{
+            break;
+        }
+    }
     
     cout << "Enter passport number: ";
     cin.getline(newPassenger.passportNumber, sizeof(newPassenger.passportNumber));

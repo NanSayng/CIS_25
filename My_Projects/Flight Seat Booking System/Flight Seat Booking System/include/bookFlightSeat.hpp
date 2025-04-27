@@ -5,6 +5,7 @@
 #include "saveToSeatsFile.hpp"
 #include "saveToPassengersFile.hpp"
 #include "../utils/isValidName.hpp"
+#include "../utils/isValidContact.hpp"
 #include <iostream>
 using namespace std;
 
