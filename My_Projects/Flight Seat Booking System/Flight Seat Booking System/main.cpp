@@ -1,6 +1,7 @@
 #include <iostream>
 #include <filesystem>
 #include "include/loadFromSeatsFile.hpp"
+#include "include/loadFromPassengersFile.hpp"
 #include "include/saveToPassengersFile.hpp"
 #include "include/displayMenu.hpp"
 #include "utils/getValidChoice.hpp"
@@ -14,6 +15,7 @@ using namespace std;
 int main(){
     string seatsFile = "seats.txt";
     loadFromSeatsFile(seatsFile, seats);
+    loadFromPassengersFile(passengers);
     int choice;
     do{
         displayMenu();
