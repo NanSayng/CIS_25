@@ -5,8 +5,8 @@ void viewFlightSeats(string seatsFile){
     if(!file){
         cout << "Error opening the file.\n";
     }
-    cout << "Available Seats: \n";
-    cout << "First Class: \n";
+    cout << "\nAvailable Seats: \n";
+    cout << "\nFirst Class: \n";
     for(const auto& seatPair : seats){
         if(seatPair.second->seatClass == SeatClass::First){
             if(!seatPair.second->isBooked){
@@ -17,7 +17,7 @@ void viewFlightSeats(string seatsFile){
         }
     }
     cout << endl;
-    cout << "Business Class:\n";
+    cout << "\nBusiness Class:\n";
     for(const auto& seatPair : seats){
         if(seatPair.second->seatClass == SeatClass::Business){
             if(!seatPair.second->isBooked){
@@ -28,7 +28,7 @@ void viewFlightSeats(string seatsFile){
         }
     }
     cout << endl;
-    cout << "Economy Class:\n";
+    cout << "\nEconomy Class:\n";
     for(const auto& seatPair : seats){
         if(seatPair.second->seatClass == SeatClass::Economy){
             if(!seatPair.second->isBooked){

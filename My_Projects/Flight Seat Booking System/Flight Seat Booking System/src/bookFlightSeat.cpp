@@ -2,7 +2,7 @@
 
 void bookFlightSeat(){
     Passenger newPassenger;
-    cout << "Booking a Seat...\n\n";
+    cout << "\nBooking a Seat...\n\n";
     int choice;
     // get valid name
     while(true){
@@ -45,20 +45,28 @@ void bookFlightSeat(){
             break;
         }
     }
-    
-    cout << "Enter passport number: ";
-    cin.getline(newPassenger.passportNumber, sizeof(newPassenger.passportNumber));
-    
+    // get valid passport number
+    while(true){
+        cout << "Enter passport number (e.g, A123456): ";
+        cin.getline(newPassenger.passportNumber, sizeof(newPassenger.passportNumber));
+        // convert from char to string to check validation
+        string passportStr(newPassenger.passportNumber);
+        if(passportStr.empty() || !isValidPassNum(passportStr)){
+            cout << "Invalid passport number. Enter length of 6 to 9.\n";
+        }else{
+            break;
+        }
+    }
     cout << "\n\nSelect seat class:\n";
     cout << "1.\tFirst Class\n";
     cout << "2.\tBusiness Class\n";
     cout << "3.\tEconomy Class\n";
-    cout << "Enter your choice: ";
+    cout << "\nEnter your choice: ";
     cin >> choice;
     
     if(choice == 1){
         newPassenger.seatClass = SeatClass::First;
-        cout << "Available seats in First Class:\n";
+        cout << "\nAvailable seats in First Class:\n";
         for(const auto& seatPair : seats){
             if(seatPair.second->seatClass == SeatClass::First && !seatPair.second->isBooked){
                 cout << "[" << seatPair.first << "] Available  ";
@@ -66,7 +74,7 @@ void bookFlightSeat(){
         }
     }else if(choice == 2){
         newPassenger.seatClass = SeatClass::Business;
-        cout << "Available seats in Business Class:\n";
+        cout << "\nAvailable seats in Business Class:\n";
         for(const auto& seatPair : seats){
             if(seatPair.second->seatClass == SeatClass::Business && !seatPair.second->isBooked){
                 cout << "[" << seatPair.first << "] Available  ";
@@ -74,7 +82,7 @@ void bookFlightSeat(){
         }
     }else if(choice == 3){
         newPassenger.seatClass = SeatClass::Economy;
-        cout << "Available seats in Economy Class:\n";
+        cout << "\nAvailable seats in Economy Class:\n";
         for(const auto& seatPair : seats){
             if(seatPair.second->seatClass == SeatClass::Economy && !seatPair.second->isBooked){
                 cout << "[" << seatPair.first << "] Available  ";

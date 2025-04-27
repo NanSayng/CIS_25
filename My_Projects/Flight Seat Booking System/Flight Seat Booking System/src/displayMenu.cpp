@@ -1,7 +1,7 @@
 #include "displayMenu.hpp"
 
 void displayMenu(){
-    cout << "\n--- Welcome to Nan's Airline ---\n";
+    cout << "\n--- Welcome to Nan's Airline ---\n\n";
     cout << "1.\tView flight seats\n";
     cout << "2.\tBook a seat\n";
     cout << "3.\tCancel booking\n";
