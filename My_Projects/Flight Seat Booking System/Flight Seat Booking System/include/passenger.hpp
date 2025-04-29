@@ -1,5 +1,4 @@
-#ifndef PASSENGER_H
-#define PASSENGER_H
+#pragma once
 
 struct Passenger{
     char name[50];
@@ -10,5 +9,4 @@ struct Passenger{
     char seatNumber[10];
 };
 
-#endif
 

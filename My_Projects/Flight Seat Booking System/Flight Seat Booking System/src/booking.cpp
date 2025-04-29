@@ -1,4 +1,4 @@
-#include "bookFlightSeat.hpp"
+#include "../include/booking.hpp"
 
 void bookFlightSeat(){
     Passenger newPassenger;
@@ -125,3 +125,97 @@ void bookFlightSeat(){
     // update passengers.dat file
     saveToPassengersFile(passengers);
 }
+
+void cancelBooking(){
+    string name, passportNum, input;
+    // get valid name
+    while(true){
+        cout << "Enter passenger name: ";
+        cin >> name;
+        if(name.empty() || !isValidName(name)){
+            cout << "Invalid name.\n";
+        }else{
+            break;
+        }
+    }
+    // get valid passport number
+    while(true){
+        cout << "Enter passport number: ";
+        cin >> passportNum;
+        if(passportNum.empty() || !isValidPassNum(passportNum)){
+            cout << "Invalid passport number. Enter length of 6 to 9.\n";
+        }else{
+            break;
+        }
+    }
+    auto it = passengers.find(passportNum);
+    if(it != passengers.end() && name == (*it).second->name){
+        cout << "Booking found: Seat " << (*it).second->seatNumber << endl;
+        // check user input
+        while(true){
+            cout << "Are you sure you want to cancel this booking? (y/n): ";
+            cin >> input;
+            if(input.empty() || !isValidChar(input)){
+                cout << "Invalid input.\n";
+            }else{
+                break;
+            }
+        }
+        if(input == "y" || input == "Y"){
+            for(auto& seatPair : seats){
+                if(seatPair.second->seatNumber == (*it).second->seatNumber){
+                    seatPair.second->isBooked = 0;
+                    // upgrade seats file
+                    saveToSeatsFile();
+                    // remove passenger from unordered_map
+                    passengers.erase(passportNum);
+                    // upgrade passengers file
+                    saveToPassengersFile(passengers);
+                    break;
+                }
+            }
+            cout << "\nBooking for " << name << " has been cancelled successfully.\n";
+        }else{
+            int choice;
+            do{
+                string seatsFile = "seats.txt";
+                displayMenu();
+                // get valid choice
+                while(true){
+                    cout << "Enter your choice (1-5): ";
+                    cin >> choice;
+                    string choiceStr = to_string(choice);
+                    if(choiceStr.empty() || !isValidChoice(choiceStr)){
+                        cout << "Invalid choice.\n";
+                    }else{
+                        break;
+                    }
+                }
+                switch(choice){
+                    case 1:
+                        viewFlightSeats(seatsFile);
+                        break;
+                    case 2:
+                        bookFlightSeat();
+                        break;
+                    case 3:
+                        cancelBooking();
+                        break;
+                    case 4:
+                        viewPassengersList();
+                        break;
+                    case 5:
+                        exitProgram();
+                        break;
+                    default:
+                        break;
+                }
+            }while(choice != 5);
+        }
+    }else if(it != passengers.end() && name != (*it).second->name){
+        cout << "\nName and passport number doesn't match.\n";
+    }else{
+        cout << "\nNo booking found under that name and passport number.\n";
+    }
+};
+

@@ -1,15 +1,8 @@
 #include <iostream>
-#include <filesystem>
-#include "include/loadFromSeatsFile.hpp"
-#include "include/loadFromPassengersFile.hpp"
-#include "include/saveToPassengersFile.hpp"
-#include "include/displayMenu.hpp"
-#include "utils/getValidChoice.hpp"
-#include "include/viewFlightSeats.hpp"
-#include "include/bookFlightSeat.hpp"
-#include "include/cancelBooking.hpp"
-#include "include/viewPassengersList.hpp"
-#include "include/exitProgram.hpp"
+#include "include/fileIO.hpp"
+#include "include/booking.hpp"
+#include "include/display.hpp"
+#include "include/validateUserInputs.hpp"
 using namespace std;
 
 int main(){
@@ -19,7 +12,17 @@ int main(){
     int choice;
     do{
         displayMenu();
-        choice = getValidChoice();
+        // get valid choice
+        while(true){
+            cout << "Enter your choice (1-5): ";
+            cin >> choice;
+            string choiceStr = to_string(choice);
+            if(choiceStr.empty() || !isValidChoice(choiceStr)){
+                cout << "Invalid choice.\n";
+            }else{
+                break;
+            }
+        }
         switch(choice){
             case 1:
                 viewFlightSeats(seatsFile);

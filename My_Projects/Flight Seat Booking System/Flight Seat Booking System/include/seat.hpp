@@ -1,5 +1,4 @@
-#ifndef SEAT_H
-#define SEAT_H
+#pragma once
 #include <string>
 using namespace std;
 
@@ -10,6 +9,3 @@ struct Seat{
     string seatNumber;
     bool isBooked;
 };
-
-#endif
-
