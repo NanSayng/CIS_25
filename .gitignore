@@ -36,3 +36,21 @@
 *.xcuserdata/
 *.xcodeproj/
 .DS_Store
+
+# Ignore CMake build folders
+cmake-build-*/
+
+# Ignore CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Ignore temporary and backup files
+*.log
+*.tmp
+*.swp
+
+# Ignore FetchContent build dependencies (optional but good)
+_build/
+_deps/
