@@ -119,9 +119,8 @@ void bookFlightSeat(){
     }
     // save info to passengers map
     passengers[newPassenger.passportNumber] = make_unique<Passenger>(newPassenger);
-    
     // update seats.txt file
-    saveToSeatsFile();
+    saveToSeatsFile(seats);
     // update passengers.dat file
     saveToPassengersFile(passengers);
 }
@@ -167,7 +166,7 @@ void cancelBooking(){
                 if(seatPair.second->seatNumber == (*it).second->seatNumber){
                     seatPair.second->isBooked = 0;
                     // upgrade seats file
-                    saveToSeatsFile();
+                    saveToSeatsFile(seats);
                     // remove passenger from unordered_map
                     passengers.erase(passportNum);
                     // upgrade passengers file
@@ -194,7 +193,7 @@ void cancelBooking(){
                 }
                 switch(choice){
                     case 1:
-                        viewFlightSeats(seatsFile);
+                        viewFlightSeats();
                         break;
                     case 2:
                         bookFlightSeat();

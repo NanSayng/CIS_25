@@ -14,7 +14,7 @@ bool isValidChoice(string& choice){
 
 // to check if it's just number with exactly 10 digits; starts with 150
 bool isValidContact(string& contact){
-    regex validContact("^150\\d{7}$");
+    regex validContact("^510\\d{7}$");
     return regex_match(contact, validContact);
 }
 

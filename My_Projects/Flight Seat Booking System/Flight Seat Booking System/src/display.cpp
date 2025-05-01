@@ -9,11 +9,7 @@ void displayMenu(){
     cout << "5.\tExit\n";
 }
 
-void viewFlightSeats(string& seatsFile){
-    ifstream file(seatsFile);
-    if(!file){
-        cout << "Error opening the file.\n";
-    }
+void viewFlightSeats(){
     cout << "\nAvailable Seats: \n";
     cout << "\nFirst Class: \n";
     for(const auto& seatPair : seats){
@@ -106,7 +102,7 @@ void exitProgram(){
             }
             switch(choice){
                 case 1:
-                    viewFlightSeats(seatsFile);
+                    viewFlightSeats();
                     break;
                 case 2:
                     bookFlightSeat();

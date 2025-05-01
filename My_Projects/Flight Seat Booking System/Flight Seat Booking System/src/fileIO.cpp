@@ -1,7 +1,7 @@
 #include "../include/fileIO.hpp"
 
-void loadFromPassengersFile(unordered_map<string, unique_ptr<Passenger>>& passengers){
-    fstream file("passengers.dat", ios::in | ios::binary);
+void loadFromPassengersFile(string& passengersFile, unordered_map<string, unique_ptr<Passenger>>& passengers){
+    fstream file(passengersFile, ios::in | ios::binary);
     if(!file.is_open()){
         cout << "Error opening the passengers file.\n";
         return;
@@ -50,7 +50,7 @@ void saveToPassengersFile(unordered_map<string, unique_ptr<Passenger>>& passenge
     file.close();
 }
 
-void saveToSeatsFile(){
+void saveToSeatsFile(map<string, shared_ptr<Seat>>& seats){
     fstream file("seats.txt", ios::out);
     if(!file.is_open()){
         cout << "Error opening the seats file.\n";

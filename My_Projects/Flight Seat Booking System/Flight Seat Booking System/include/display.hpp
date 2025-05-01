@@ -8,7 +8,7 @@
 using namespace std;
 
 void displayMenu();
-void viewFlightSeats(string& seatsFile);
+void viewFlightSeats();
 void viewPassengersList();
 void exitProgram();
 

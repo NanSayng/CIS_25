@@ -5,10 +5,10 @@
 using namespace std;
 
 // read from files
-void loadFromPassengersFile(unordered_map<string, unique_ptr<Passenger>>& passengers);
+void loadFromPassengersFile(string& passengersFile, unordered_map<string, unique_ptr<Passenger>>& passengers);
 void loadFromSeatsFile(string& seatsFile, map<string, shared_ptr<Seat>>& seats);
 
 // write to files
 void saveToPassengersFile(unordered_map<string, unique_ptr<Passenger>>& passengers);
-void saveToSeatsFile();
+void saveToSeatsFile(map<string, shared_ptr<Seat>>& seats);
 

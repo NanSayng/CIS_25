@@ -8,7 +8,8 @@ using namespace std;
 int main(){
     string seatsFile = "seats.txt";
     loadFromSeatsFile(seatsFile, seats);
-    loadFromPassengersFile(passengers);
+    string passengersFile = "passengers.dat";
+    loadFromPassengersFile(passengersFile, passengers);
     int choice;
     do{
         displayMenu();
@@ -25,7 +26,7 @@ int main(){
         }
         switch(choice){
             case 1:
-                viewFlightSeats(seatsFile);
+                viewFlightSeats();
                 break;
             case 2:
                 bookFlightSeat();
