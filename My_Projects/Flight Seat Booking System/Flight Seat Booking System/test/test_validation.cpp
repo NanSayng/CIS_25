@@ -7,8 +7,8 @@ TEST(ValidationTests, ValidName){
 }
 
 TEST(ValidationTests, InvalidName){
-    EXPECT_FALSE(isValidName("")); // empty name
-    EXPECT_FALSE(isValidName("Nan!&")); // w special character
+    EXPECT_FALSE(isValidName(""));
+    EXPECT_FALSE(isValidName("Nan!&"));
 }
 
 TEST(ValidationTests, ValidContact){
@@ -17,21 +17,21 @@ TEST(ValidationTests, ValidContact){
 }
 
 TEST(ValidationTests, InvalidContact){
-    EXPECT_FALSE(isValidName("3235643234")); // doesn't start with 510
-    EXPECT_FALSE(isValidName("5103055")); // shorter than 10 digits
-    EXPECT_FALSE(isValidName("5103098434793")); // longer than 10 digits
-    EXPECT_FALSE(isValidName("5103@55789")); // contain character
+    EXPECT_FALSE(isValidContact("3235643234")); // doesn't start with 510
+    EXPECT_FALSE(isValidContact("5103055")); // shorter than 10 digits
+    EXPECT_FALSE(isValidContact("5103098434793")); // longer than 10 digits
+    EXPECT_FALSE(isValidContact("5103@55789")); // contain character
 }
 
 TEST(ValidationTests, ValidPassportNum){
     EXPECT_TRUE(isValidPassNum("A123456"));
-    EXPECT_TRUE(isValidContact("B228372"));
+    EXPECT_TRUE(isValidPassNum("B228372"));
 }
 
 TEST(ValidationTests, InvalidPassportNum){
-    EXPECT_FAlse(isValidPassNum("1234566")); // doens't start with alphabet
-    EXPECT_FALSE(isValidContact("123jjk*")); // contain characters
-    EXPECT_FALSE(isValidContact("A1234")); // doens't follow w 6 digits
+    EXPECT_FALSE(isValidPassNum("1234566")); // doens't start with alphabet
+    EXPECT_FALSE(isValidPassNum("123jjk*")); // contain characters
+    EXPECT_FALSE(isValidPassNum("A1234")); // doens't follow w 6 digits
 }
 
 TEST(ValidationTests, ValidSeatNum){
