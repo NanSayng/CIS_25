@@ -1,4 +1,5 @@
 #pragma once
+#include "seat.hpp"
 
 struct Passenger{
     char name[50];

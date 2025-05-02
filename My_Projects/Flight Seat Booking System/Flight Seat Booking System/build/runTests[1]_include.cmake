@@ -1,0 +1,5 @@
+if(EXISTS "/Users/nansayng/Documents/CIS_25/My_Projects/Flight Seat Booking System/Flight Seat Booking System/build/runTests[1]_tests.cmake")
+  include("/Users/nansayng/Documents/CIS_25/My_Projects/Flight Seat Booking System/Flight Seat Booking System/build/runTests[1]_tests.cmake")
+else()
+  add_test(runTests_NOT_BUILT runTests_NOT_BUILT)
+endif()

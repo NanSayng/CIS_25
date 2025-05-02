@@ -5,11 +5,15 @@
 #include <unordered_map>
 #include "../include/passenger.hpp"
 #include "../include/fileIO.hpp"
+#include "../include/seat.hpp"
 using namespace std;
 
 TEST(ReadingFileTest, LoadSinglePassenger){
+    // create unordered_map for testing
+    unordered_map<string, unique_ptr<Passenger>> loadedPassengers;
     // create test passenger
     Passenger testPassenger("James", 22, "5103055789", "A123456", SeatClass::First, "1A");
+    loadedPassengers[testPassenger.seatNumber] = make_unique<Passenger>(testPassenger);
     // write the test passenger to binary test file
     string testFile = "test_passengers.dat";
     fstream file(testFile, ios::out | ios::binary);
@@ -18,10 +22,11 @@ TEST(ReadingFileTest, LoadSinglePassenger){
         return;
     }
     // write to test file
-    file.write(reinterpret_cast<char*>(&testPassenger), sizeof(Passenger));
+    for(const auto& passengerPair : loadedPassengers){
+        file.write(reinterpret_cast<char*>(passengerPair.second.get()), sizeof(Passenger));
+    }
     file.close();
-    // create unordered_map for testing
-    unordered_map<string, unique_ptr<Passenger>> loadedPassengers;
+
     loadFromPassengersFile(testFile, loadedPassengers);
     // check the result
     for(auto& test : loadedPassengers){
@@ -29,8 +34,8 @@ TEST(ReadingFileTest, LoadSinglePassenger){
         EXPECT_EQ(test.second->age, 22);
         EXPECT_EQ(test.second->contact, "5103055789");
         EXPECT_EQ(test.second->passportNumber, "A123456");
-        EXPECT_EQ(test.second->SeatClass, SeatClass::First);
-        EXPECT_EQ(test.second->seatNum, "1A");
+        EXPECT_EQ(test.second->seatClass, SeatClass::First);
+        EXPECT_EQ(test.second->seatNumber, "1A");
     }
 }
 

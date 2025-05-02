@@ -1,0 +1,89 @@
+{
+  "buildCommand" : {
+    "command" : "prepareForIndexing",
+    "enableIndexBuildArena" : false,
+    "targets" : null
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "f968caecfc6c5f1df57fdfed9d9e8992d82f8e78bffea5e624d0a6696f91a5d2"
+    },
+    {
+      "guid" : "f968caecfc6c5f1df57fdfed9d9e8992acbc3cfe92ab5edf83bf67c398c68e7f"
+    },
+    {
+      "guid" : "f968caecfc6c5f1df57fdfed9d9e89924226221bbd3f58fc72c0508ea5306a9e"
+    },
+    {
+      "guid" : "f968caecfc6c5f1df57fdfed9d9e8992de9aebd767869ed77c9b97185a622f84"
+    },
+    {
+      "guid" : "f968caecfc6c5f1df57fdfed9d9e8992309351e4045822466e6b5e28ea5fa8a0"
+    },
+    {
+      "guid" : "f968caecfc6c5f1df57fdfed9d9e899208e9ca601f8578dbb26a24dc322ab462"
+    },
+    {
+      "guid" : "f968caecfc6c5f1df57fdfed9d9e89921ba1acfd20af0a37daf2158015c1a151"
+    },
+    {
+      "guid" : "f968caecfc6c5f1df57fdfed9d9e8992099615c3fee587d8e521579a1670b17c"
+    },
+    {
+      "guid" : "f968caecfc6c5f1df57fdfed9d9e899285675b43a7116ec3f7448e3d921d8a35"
+    },
+    {
+      "guid" : "f968caecfc6c5f1df57fdfed9d9e8992448c0cc3c43d9f0f5f00d06996c5f904"
+    },
+    {
+      "guid" : "f968caecfc6c5f1df57fdfed9d9e89925bbb48a268075b1cc6c5d495a9812fa0"
+    }
+  ],
+  "containerPath" : "/Users/nansayng/Documents/CIS_25/My_Projects/Flight Seat Booking System/Flight Seat Booking System/build/Flight Seat Booking System.xcodeproj",
+  "continueBuildingAfterErrors" : true,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx15.2",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "arm64e",
+        "arm64",
+        "x86_64"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "",
+      "buildProductsPath" : "",
+      "derivedDataPath" : "/Users/nansayng/Library/Developer/Xcode/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/nansayng/Library/Developer/Xcode/DerivedData/Flight_Seat_Booking_System-ebucjphxkqzjydcymcibeekxlqph/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/nansayng/Library/Developer/Xcode/DerivedData/Flight_Seat_Booking_System-ebucjphxkqzjydcymcibeekxlqph/Index.noindex/PrecompiledHeaders",
+      "pchPath" : ""
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "NO",
+          "ONLY_ACTIVE_ARCH" : "YES"
+        }
+      }
+    }
+  },
+  "qos" : "default",
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : true,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}
