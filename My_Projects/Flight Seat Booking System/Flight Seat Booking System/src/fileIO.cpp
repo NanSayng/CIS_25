@@ -1,6 +1,6 @@
 #include "../include/fileIO.hpp"
 
-void loadFromPassengersFile(string& passengersFile, unordered_map<string, unique_ptr<Passenger>>& passengers){
+void loadFromPassengersFile(const string& passengersFile, unordered_map<string, unique_ptr<Passenger>>& passengers){
     fstream file(passengersFile, ios::in | ios::binary);
     if(!file.is_open()){
         cout << "Error opening the passengers file.\n";
@@ -13,7 +13,7 @@ void loadFromPassengersFile(string& passengersFile, unordered_map<string, unique
     file.close();
 }
 
-void loadFromSeatsFile(string& seatsFile, map<string, shared_ptr<Seat>>& seats){
+void loadFromSeatsFile(const string& seatsFile, map<string, shared_ptr<Seat>>& seats){
     fstream file(seatsFile, ios::in);
     if(!file.is_open()){
         cout << "Error opening the seats file.\n";
@@ -37,6 +37,7 @@ void loadFromSeatsFile(string& seatsFile, map<string, shared_ptr<Seat>>& seats){
     file.close();
 }
 
+// update to passengersFile
 void saveToPassengersFile(unordered_map<string, unique_ptr<Passenger>>& passengers){
     fstream file("passengers.dat", ios::out | ios::binary);
     if(!file.is_open()){
@@ -44,12 +45,14 @@ void saveToPassengersFile(unordered_map<string, unique_ptr<Passenger>>& passenge
         return;
     }
     
-    for(auto& passengerPair : passengers){
-        file.write(reinterpret_cast<char*>(passengerPair.second.get()), sizeof(Passenger));
-    }
+    for(const auto& passengerPair : passengers){
+        const Passenger& p = *(passengerPair.second);
+            file.write(reinterpret_cast<const char*>(&p), sizeof(Passenger));
+        }
     file.close();
 }
 
+// update to seats file
 void saveToSeatsFile(map<string, shared_ptr<Seat>>& seats){
     fstream file("seats.txt", ios::out);
     if(!file.is_open()){
