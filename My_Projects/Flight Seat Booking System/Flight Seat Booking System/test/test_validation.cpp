@@ -35,8 +35,8 @@ TEST(ValidationTests, InvalidPassportNum){
 }
 
 TEST(ValidationTests, ValidSeatNum){
-    EXPECT_TRUE(isValidSeatNum("A5"));
-    EXPECT_TRUE(isValidSeatNum("C3"));
+    EXPECT_TRUE(isValidSeatNum("5A"));
+    EXPECT_TRUE(isValidSeatNum("3C"));
 }
 
 TEST(ValidationTests, InvalidSeatNum){
