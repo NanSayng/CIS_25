@@ -20,6 +20,9 @@ bool isValidContact(const string& contact){
 
 // to check if string input contain only letters and spaces
 bool isValidName(const string& name){
+    if(name.empty()){
+        return false;
+    }
     regex validName(R"(^[A-Za-z ]*$)");
     return regex_match(name, validName);
 }
