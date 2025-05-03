@@ -10,6 +10,14 @@ struct Passenger {
     SeatClass seatClass;
     char seatNumber[10];
     
+    // Default constructor
+        Passenger() : age(0), seatClass(SeatClass::Economy) {
+            std::strcpy(this->name, ""); // Set default empty string
+            std::strcpy(this->contact, "");
+            std::strcpy(this->passportNumber, "");
+            std::strcpy(this->seatNumber, "");
+        }
+    
     // Constructor
     Passenger(const char* name, int age, const char* contact,
                   const char* passportNumber, SeatClass seatClass, const char* seatNumber)
