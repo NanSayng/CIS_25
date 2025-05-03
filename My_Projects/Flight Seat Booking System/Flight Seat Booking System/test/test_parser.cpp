@@ -17,7 +17,7 @@ TEST(ReadingFileTest, LoadSinglePassenger){
     savedPassengers[testPassenger.passportNumber] = make_unique<Passenger>(testPassenger);
     // write the test passenger to binary test file
     string testFile = "test_passengers.dat";
-    fstream file(testFile, ios::out | ios::binary);
+    fstream file(testFile, ios::in | ios::binary);
     if(!file.is_open()){
         cout << "Error opening the test passengers file.\n";
         return;
@@ -44,9 +44,10 @@ TEST(ReadingFileTest, LoadSinglePassenger){
 TEST(ReadingFileTest, LoadSeatsFromFile){
     // create seatsTest.txt file to test
     string testFile = "test_seats.txt";
-    fstream file(testFile, ios::out);
+    fstream file(testFile, ios::in);
     if(!file.is_open()){
         cout << "Error opening the test seats file.\n";
+        return;
     }
     file << "1A First 1\n";
     file << "2B Business 0\n";
@@ -79,7 +80,58 @@ TEST(ReadingFileTest, LoadSeatsFromFile){
     EXPECT_TRUE(seat4->isBooked);
 }
 
+TEST(WritingFileTest, WriteSinglePassenger){
+    // sample passegner to write for test
+    unordered_map<string, unique_ptr<Passenger>> samplePassengers;
+    Passenger testPassenger("Nan", 21, "5103055789", "B123456", SeatClass::First, "3A");
+    samplePassengers["B123456"] = make_unique<Passenger>(testPassenger);
+    // create sample passenger binary file to test
+    string testFile = "testPassengers.dat";
+    saveToPassengersFile(testFile, samplePassengers);
+    // read and check if it writes correctly
+    fstream file(testFile, ios::out | ios::binary);
+    if(!file.is_open()){
+        cout << "Error opening the test passenger file.\n";
+        return;
+    }
+    Passenger readPassenger;
+    while(file.read(reinterpret_cast<char*>(&readPassenger), sizeof(Passenger))){
+        EXPECT_EQ(readPassenger.name, "Nan");
+        EXPECT_EQ(readPassenger.age, 21);
+        EXPECT_EQ(readPassenger.contact, "5103055789");
+        EXPECT_EQ(readPassenger.passportNumber, "B123456");
+        EXPECT_EQ(readPassenger.seatClass, SeatClass::First);
+        EXPECT_EQ(readPassenger.seatNumber, "3A");
+    }
+    file.close();
+}
 
+TEST(WritingFileTest, WriteSeatsFile){
+    // sample seats to write for test
+    map<string, shared_ptr<Seat>> sampleSeats;
+    Seat testSeat(SeatClass::First, "1A", true);
+    sampleSeats["1A"] = make_shared<Seat>(testSeat);
+    // create sample seat txt file to test
+    string testFile = "testSeats.txt";
+    fstream file(testFile, ios::out);
+    if(!file.is_open()){
+        cout << "Error opening test seats file.\n";
+        return;
+    }
+    saveToSeatsFile(testFile, sampleSeats);
+    // to check if it works
+    string seatClassStr;
+    string seatNum;
+    bool isBooked;
+    while(file >>  seatNum >> seatClassStr >> isBooked){
+        EXPECT_EQ(seatNum, "1A");
+        EXPECT_EQ(seatClassStr, "First");
+        EXPECT_EQ(isBooked, true);
+    }
+    
+    file.close();
+    
+}
 
 
 
