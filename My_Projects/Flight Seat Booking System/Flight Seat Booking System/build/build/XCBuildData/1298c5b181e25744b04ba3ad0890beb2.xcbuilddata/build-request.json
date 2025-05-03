@@ -1,8 +1,8 @@
 {
   "buildCommand" : {
-    "command" : "build",
-    "skipDependencies" : false,
-    "style" : "buildAndRun"
+    "command" : "prepareForIndexing",
+    "enableIndexBuildArena" : false,
+    "targets" : null
   },
   "configuredTargets" : [
     {
@@ -10,7 +10,7 @@
     }
   ],
   "containerPath" : "/Users/nansayng/Documents/CIS_25/My_Projects/Flight Seat Booking System/Flight Seat Booking System/build/Flight Seat Booking System.xcodeproj",
-  "continueBuildingAfterErrors" : false,
+  "continueBuildingAfterErrors" : true,
   "dependencyScope" : "workspace",
   "enableIndexBuildArena" : false,
   "hideShellScriptEnvironment" : false,
