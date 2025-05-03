@@ -1,3 +1,5 @@
+![Build and Test](https://github.com/NanSayng/CIS_25/actions/workflows/cross-platform-ci.yml/badge.svg)
+
 # Flight Seat Booking System (C++)
 This project is an airline seats reservation system that allows user to book, cancel, view seats and view
 passengers list. The project also has the unit testing with Google Test.
@@ -21,5 +23,4 @@ task_tracker/
 ├── seats.txt         # seats text file
 ├── CMakeLists.txt    # Build configuration
 ├── main.cpp          
-├── CMakeLists.txt    # Build configuration
 └── .gitignore        # Git ignore rules
