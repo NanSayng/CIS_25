@@ -18,6 +18,7 @@ int main(){
             cout << "Enter your choice (1-5): ";
             cin >> choice;
             string choiceStr = to_string(choice);
+            // check if it's empty or invalid
             if(choiceStr.empty() || !isValidChoice(choiceStr)){
                 cout << "Invalid choice.\n";
             }else{
