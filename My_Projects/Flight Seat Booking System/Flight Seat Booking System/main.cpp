@@ -6,8 +6,10 @@
 using namespace std;
 
 int main(){
+    // txt file
     string seatsFile = "seats.txt";
     loadFromSeatsFile(seatsFile, seats);
+    // binary file
     string passengersFile = "passengers.dat";
     loadFromPassengersFile(passengersFile, passengers);
     int choice;
