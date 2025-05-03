@@ -1,4 +1,4 @@
-![Build and Test](https://github.com/NanSayng/CIS_25/actions/workflows/cross-platform-ci.yml/badge.svg)
+![Build and Test](https://github.com/NanSayng/CIS_25/actions/workflows/ci.yml/badge.svg)
 
 # Flight Seat Booking System (C++)
 This project is an airline seats reservation system that allows user to book, cancel, view seats and view
