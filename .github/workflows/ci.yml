@@ -33,7 +33,7 @@ jobs:
         run: cmake --version
 
       - name: Configure with CMake
-        run: cmake -S "CIS_25/MyProjects/Flight Seat Booking System/Flight Seat Booking System" -B build
+        run: cmake -S "CIS_25/MyProjects/Flight\ Seat\ Booking\ System/Flight\ Seat\ Booking\ System" -B build
 
       - name: Build with CMake
         run: cmake --build build
