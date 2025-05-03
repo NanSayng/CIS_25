@@ -54,3 +54,4 @@ Makefile
 # Ignore FetchContent build dependencies (optional but good)
 _build/
 _deps/
+build/
