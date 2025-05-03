@@ -31,16 +31,17 @@ jobs:
 
       - name: Set up CMake
         run: cmake --version
-        
-     - name: Debug folder structure
-       run: ls -R
+
+      - name: Debug folder structure
+        run: ls -R
 
       - name: Configure with CMake
-        run: cmake -S "CIS_25/My_Projects/Flight Seat Booking System/Flight Seat Booking System/" -B build
+        run: cmake -S "CIS_25/My_Projects/Flight Seat Booking System/Flight Seat Booking System" -B build
 
       - name: Build with CMake
         run: cmake --build build
 
       - name: Run Tests
         run: ctest --test-dir build --output-on-failure
+
 
