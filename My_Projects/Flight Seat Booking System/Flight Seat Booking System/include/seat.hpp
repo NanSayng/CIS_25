@@ -8,4 +8,6 @@ struct Seat{
     SeatClass seatClass;
     string seatNumber;
     bool isBooked;
+    //constructor
+    Seat(SeatClass seatClass, const std::string& seatNumber, bool isBooked) : seatClass(seatClass), seatNumber(seatNumber), isBooked(isBooked) {}
 };
