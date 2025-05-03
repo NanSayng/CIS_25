@@ -9,6 +9,6 @@ void loadFromPassengersFile(const string& passengersFile, unordered_map<string, 
 void loadFromSeatsFile(const string& seatsFile, map<string, shared_ptr<Seat>>& seats);
 
 // write to files
-void saveToPassengersFile(unordered_map<string, unique_ptr<Passenger>>& passengers);
-void saveToSeatsFile(map<string, shared_ptr<Seat>>& seats);
+void saveToPassengersFile(const string& passengersFile, unordered_map<string, unique_ptr<Passenger>>& passengers);
+void saveToSeatsFile(const string& seatsFile, map<string, shared_ptr<Seat>>& seats);
 

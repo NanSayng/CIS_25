@@ -38,8 +38,8 @@ void loadFromSeatsFile(const string& seatsFile, map<string, shared_ptr<Seat>>& s
 }
 
 // update to passengersFile
-void saveToPassengersFile(unordered_map<string, unique_ptr<Passenger>>& passengers){
-    fstream file("passengers.dat", ios::out | ios::binary);
+void saveToPassengersFile(const string& passengersFile, unordered_map<string, unique_ptr<Passenger>>& passengers){
+    fstream file(passengersFile, ios::out | ios::binary);
     if(!file.is_open()){
         cout << "Error opening the passengers file.\n";
         return;
@@ -53,8 +53,8 @@ void saveToPassengersFile(unordered_map<string, unique_ptr<Passenger>>& passenge
 }
 
 // update to seats file
-void saveToSeatsFile(map<string, shared_ptr<Seat>>& seats){
-    fstream file("seats.txt", ios::out);
+void saveToSeatsFile(const string& seatsFile, map<string, shared_ptr<Seat>>& seats){
+    fstream file(seatsFile, ios::out);
     if(!file.is_open()){
         cout << "Error opening the seats file.\n";
         return;

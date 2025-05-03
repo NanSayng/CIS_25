@@ -1,0 +1,4 @@
+1A First 1
+2B Business 0
+4C Economy 0
+3B Business 1
