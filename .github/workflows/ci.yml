@@ -32,7 +32,7 @@ jobs:
       - name: Set up CMake
         run: cmake --version
         
-        - name: Debug folder structure
+      - name: Debug folder structure
         run: |
          pwd
          ls -R
