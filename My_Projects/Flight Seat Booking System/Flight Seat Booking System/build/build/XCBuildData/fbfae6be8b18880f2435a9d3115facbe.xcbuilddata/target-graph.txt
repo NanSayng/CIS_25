@@ -1,7 +1,0 @@
-Target dependency graph (3 targets)
-Target 'flight_seat_manager' in project 'Flight Seat Booking System'
-➜ Explicit dependency on target 'flight_seat_lib' in project 'Flight Seat Booking System'
-➜ Explicit dependency on target 'ZERO_CHECK' in project 'Flight Seat Booking System'
-Target 'flight_seat_lib' in project 'Flight Seat Booking System'
-➜ Explicit dependency on target 'ZERO_CHECK' in project 'Flight Seat Booking System'
-Target 'ZERO_CHECK' in project 'Flight Seat Booking System' (no dependencies)
