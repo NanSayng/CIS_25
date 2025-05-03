@@ -6,7 +6,7 @@ bool isValidChar(const string& input){
     return regex_match(input,validChar);
 }
 
-// allowed only 1-5 number
+// allowed only 1-5 number for menu
 bool isValidChoice(const string& choice){
     regex validChoice(R"(^[1-5]$)");
     return regex_match(choice, validChoice);
