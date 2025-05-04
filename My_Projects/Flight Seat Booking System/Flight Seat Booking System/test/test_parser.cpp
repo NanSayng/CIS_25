@@ -17,7 +17,7 @@ TEST(ReadingFileTest, LoadSinglePassenger){
     savedPassengers[testPassenger.passportNumber] = make_unique<Passenger>(testPassenger);
     // write the test passenger to binary test file
     string testFile = "test_passengers.dat";
-    fstream file(testFile, ios::in | ios::binary);
+    fstream file(testFile, ios::out | ios::binary);
     if(!file.is_open()){
         cout << "Error opening the test passengers file.\n";
         return;
@@ -44,7 +44,7 @@ TEST(ReadingFileTest, LoadSinglePassenger){
 TEST(ReadingFileTest, LoadSeatsFromFile){
     // create seatsTest.txt file to test
     string testFile = "test_seats.txt";
-    fstream file(testFile, ios::in);
+    fstream file(testFile, ios::out);
     if(!file.is_open()){
         cout << "Error opening the test seats file.\n";
         return;
