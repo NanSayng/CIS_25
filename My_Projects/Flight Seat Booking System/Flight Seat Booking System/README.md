@@ -1,5 +1,5 @@
 ![Build and Test](https://github.com/NanSayng/CIS_25/actions/workflows/ci.yml/badge.svg)
-
+## Project Explanation Link --> https://youtu.be/6muhu7Vc9Jg
 # Flight Seat Booking System (C++)
 This project is an airline seats reservation system that allows user to book, cancel, view seats and view
 passengers list. The project also has the unit testing with Google Test.
