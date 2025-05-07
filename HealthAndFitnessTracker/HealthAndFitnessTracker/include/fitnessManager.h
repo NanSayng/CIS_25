@@ -1,10 +1,9 @@
 #pragma once
 #include <iostream>
-#include <iomanip>
+#include <stdexcept> // for invalid argument
 #include "user.h"
-#include "input_validation.h"
+#include "inputValidation.h"
 #include "menu.h"
-struct User; // forward declaration
 
 // to add workouts to the array
 void addWorkout(User& user);
@@ -14,5 +13,8 @@ void removeWorkouts(User& user);
 void trackWorkouts(User& user);
 // calculate BMR based on the user's gender
 double calculateBMR(User& user);
-// calculate calories based on user's activity level and goal
-double calculateDailyCalorie(User& user, int activeLevel);
+// calculate TDEE based on the user's activity level
+double calculateTDEE(double BMR, int activityLevel);
+// calculate calories based on user's goal
+double calculateDailyCalorie(User& user);
+

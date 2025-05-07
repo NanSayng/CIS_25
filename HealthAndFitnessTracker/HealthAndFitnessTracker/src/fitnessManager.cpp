@@ -1,4 +1,5 @@
 #include "../include/fitnessManager.h"
+using namespace std;
 
 void addWorkout(User& user){
     string workoutName, calories, input;
@@ -42,7 +43,8 @@ void addWorkout(User& user){
         }
     } while(input == "Y" || input == "y"); // if say yes continue adding meals
     // if no diplay main menu again
-    displayMainMenu(user);
+    displayMainMenu();
+    getMenuOption(user);
 }
 
 void removeWorkouts(User& user){
@@ -63,7 +65,8 @@ void removeWorkouts(User& user){
         if(input1 == "y" || input1 == "Y"){
             addWorkout(user);
         }else{
-            displayMainMenu(user);
+            displayMainMenu();
+            getMenuOption(user);
         }
     }else{
         // display added workouts
@@ -109,7 +112,8 @@ void removeWorkouts(User& user){
             if(input3 == "y" || input3 == "Y"){
                 addWorkout(user);
             }else{
-                displayMainMenu(user);
+                displayMainMenu();
+                getMenuOption(user);
             }
         }else{
             // show updated workouts after removing
@@ -132,7 +136,8 @@ void removeWorkouts(User& user){
             if(input4 == "Y" || input4 == "y"){
                 removeWorkouts(user);
             }else{
-                displayMainMenu(user);
+                displayMainMenu();
+                getMenuOption(user);
             }
         }
     }
@@ -163,7 +168,8 @@ void trackWorkouts(User& user){
         if(input1 == "Y" || input1 == "y"){
             addWorkout(user);
         }else
-            displayMainMenu(user);
+            displayMainMenu();
+        getMenuOption(user);
     }else{
         // if there's no workouts to display, ask user if they want to add
         cout << "You haven't add any workouts yet.\n";
@@ -180,10 +186,12 @@ void trackWorkouts(User& user){
         if(input2 == "Y" || input2 == "y"){
             addWorkout(user);
         }else
-            displayMainMenu(user);
+            displayMainMenu();
+        getMenuOption(user);
     }
 }
 
+// to calculate BMR (calories our body needed to function at rest which is different for men and women
 double calculateBMR(User& user){
     double BMR;
     if(user.isMale){
@@ -196,11 +204,9 @@ double calculateBMR(User& user){
     return BMR;
 }
 
-double calculateDailyCalorie(User& user, int activeLevel){
-    // calculate TDEE(calories our body burned in a day) based on the user's activity level
-    double TDEE, dailyCalorie;
-    double BMR = calculateBMR(user);
-    switch (activeLevel) {
+double calculateTDEE(double BMR, int activityLevel){
+    double TDEE = -1;
+    switch (activityLevel) {
         case 1:
             TDEE = BMR * 1.2;
             break;
@@ -214,8 +220,17 @@ double calculateDailyCalorie(User& user, int activeLevel){
             TDEE = BMR * 1.725;
             break;
         default:
+            throw invalid_argument("Invalid activity level. Must be 1 to 4.");
             break;
     }
+    return TDEE;
+}
+
+double calculateDailyCalorie(User& user){
+    // calculate TDEE(calories our body burned in a day) based on the user's activity level
+    double TDEE, dailyCalorie;
+    double BMR = calculateBMR(user);
+    TDEE = calculateTDEE(BMR, user.activeLevel);
     cout << "\n---> ";
     // calculate daily calorie intake based on user's goal
     switch (user.goal) {
@@ -241,3 +256,4 @@ double calculateDailyCalorie(User& user, int activeLevel){
     cout << round(dailyCalorie) << " calories.\n\n";
     return round(dailyCalorie);
 }
+

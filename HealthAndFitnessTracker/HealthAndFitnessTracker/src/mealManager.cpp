@@ -1,6 +1,4 @@
 #include "../include/mealManager.h"
-#include <algorithm>
-#include <iostream>
 using namespace std;
 
 void addMeal(User& user){
@@ -46,7 +44,8 @@ void addMeal(User& user){
     } while(input == "y" || input == "Y"); // if say yes continue adding workouts
     // if no diplay main menu again
     cout << endl;
-    displayMainMenu(user);
+    displayMainMenu();
+    getMenuOption(user);
 }
 
 void removeMeals(User& user){
@@ -68,7 +67,8 @@ void removeMeals(User& user){
         if(input1 == "y" || input1 == "Y"){
             addMeal(user);
         }else{
-            displayMainMenu(user);
+            displayMainMenu();
+            getMenuOption(user);
         }
     }else{
         // if there's meals, display added meals
@@ -113,7 +113,8 @@ void removeMeals(User& user){
             if(input3 == "y" || input3 == "Y"){
                 addMeal(user);
             }else{
-                displayMainMenu(user);
+                displayMainMenu();
+                getMenuOption(user);
             }
         }else{
             // if there still meals left, show the updated meals
@@ -136,7 +137,8 @@ void removeMeals(User& user){
             if(input4 == "Y" || input4 == "y"){
                 removeMeals(user); // if yes, call removeMeals again
             }else{
-                displayMainMenu(user);
+                displayMainMenu();
+                getMenuOption(user);
             }
         }
     }
@@ -166,7 +168,8 @@ void trackMeals(User& user){
         if(input1 == "Y" || input1 == "y"){
             addMeal(user);
         }else
-            displayMainMenu(user);
+            displayMainMenu();
+        getMenuOption(user);
     }else{
         // if no meals to diplay, ask user if they want to add meals
         cout << "You haven't add any meals yet.\n";
@@ -183,6 +186,8 @@ void trackMeals(User& user){
         if(input2 == "Y" || input2 == "y"){
             addMeal(user);
         }else
-            displayMainMenu(user);
+            displayMainMenu();
+        getMenuOption(user);
     }
 }
+

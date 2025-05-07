@@ -1,6 +1,6 @@
 #include "../include/menu.h"
 
-void displayMainMenu(User& user){
+void displayMainMenu(){
     cout << setfill(' ') << setw(15) << "Main Menu" << endl;
     cout << setfill('-') << setw(21) << '-' << endl;
     cout << "1.\tAdd Meal\n";
@@ -12,7 +12,6 @@ void displayMainMenu(User& user){
     cout << "7.\tView Progress\n";
     cout << "8.\tExit\n";
     cout << setfill('-') << setw(21) << '-' << endl;
-    getMenuOption(user);
 }
 
 void viewProgress(User& user){
@@ -36,7 +35,8 @@ void viewProgress(User& user){
     if(totalCalConsumed == 0 && totalCalBurned == 0){
         cout << "You haven't logged any meals or workouts yet.\n";
         cout << "Start adding meals and workouts to track your progress!\n\n";
-        displayMainMenu(user);
+        displayMainMenu();
+        getMenuOption(user);
     }else{
         // if there's calories added, show the progress and their calories status
         cout << "\nTotal calories consumed: " << round(totalCalConsumed) << " kcal\n";
@@ -65,7 +65,8 @@ void viewProgress(User& user){
             }
         }
         if(input == "Y" || input == "y"){
-            displayMainMenu(user);
+            displayMainMenu();
+            getMenuOption(user);
         }else{
             // if no exit the program
             cout << "Exiting the progream. Have a good day!\n";
@@ -89,6 +90,7 @@ void exitProgram(User& user){
         cout << "I hope you a wonderful day. Bye!\n";
         exit(0);
     }else{
-        displayMainMenu(user);
+        displayMainMenu();
+        getMenuOption(user);
     }
 }

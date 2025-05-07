@@ -1,4 +1,4 @@
-#include "../include/input_validation.h"
+#include "../include/inputValidation.h"
 
 // check if input is just y/Y or n/N
 bool validateChar(const string& input){
@@ -23,3 +23,5 @@ bool validateString(const string& input){
     regex reg(R"(^[A-Za-z ]*$)");
     return regex_match(input,reg);
 }
+
+

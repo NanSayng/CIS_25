@@ -1,9 +1,6 @@
 #pragma once
-#include <iostream>
+#include <string>
 #include <vector>
-#include <regex>
-#include "fitnessManager.h"
-#include "mealManager.h"
 using namespace std;
 
 // to store user's meals and their calories
@@ -31,23 +28,3 @@ struct User{
     Workouts workouts;
 };
 
-void getUserInfo(User& user);
-
-// get user's menu option, and run the corresponding based on option
-void getMenuOption(User& user);
-// to get user's activity level
-int getValidActiveLevel();
-// get user's age
-int getValidAge();
-// get user's current weight
-double getValidCurrWeight();
-// get user's gender
-bool getValidGender();
-// get user's fitness goal
-int getValidGoal();
-// get user's goal weight
-double getValidGoalWeight();
-// ask user's height
-double getValidHeight();
-// get user's name
-string getValidName();

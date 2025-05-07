@@ -24,3 +24,32 @@ TEST(BMRTest, FemaleBMR){
     EXPECT_EQ(calculateBMR(testUser), expectedBMR);
 }
 
+// testing control flow
+TEST(TDEETest, ValidActivityLevel){
+    User testUser;
+    testUser.isMale = false;
+    testUser.currWeight = 60.0;
+    testUser.height = 160.0;
+    testUser.age = 30;
+    double BMR = calculateBMR(testUser);
+    // based on active level
+    EXPECT_EQ(calculateTDEE(BMR, 1), 1546.8);
+    EXPECT_EQ(calculateTDEE(BMR, 2), 1772.375);
+    EXPECT_EQ(calculateTDEE(BMR, 3), 1997.95);
+    EXPECT_EQ(calculateTDEE(BMR, 4), 2223.525);
+}
+
+// testing an edge case
+TEST(TDEETest, InvalidActivityLevelThrow){
+    User testUser;
+    testUser.isMale = false;
+    testUser.currWeight = 60.0;
+    testUser.height = 160.0;
+    testUser.age = 30;
+    double BMR = calculateBMR(testUser);
+    // throw the edge cases
+    EXPECT_THROW(calculateTDEE(BMR, 0), invalid_argument);
+    EXPECT_THROW(calculateTDEE(BMR, -1), invalid_argument);
+    EXPECT_THROW(calculateTDEE(BMR, -5), invalid_argument);
+    EXPECT_THROW(calculateTDEE(BMR, 5), invalid_argument);
+}
