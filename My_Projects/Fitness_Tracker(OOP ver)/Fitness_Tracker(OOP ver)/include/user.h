@@ -23,7 +23,7 @@ private:
     ActivityLevel activityLevel;
 public:
     // default constructor
-    User();
+    User() {};
     // getter
     string getUsername();
     int getUserAge();
@@ -37,5 +37,5 @@ public:
     void getUserInfo();
     double calculateBMR() const;
     double calculateDailyCalorie(const double& BMR) const;
-    ~User();
+    ~User() {};
 };

@@ -14,8 +14,9 @@ string User::getUsername(){
         getline(cin, name);
         if(name.empty() || !validName(name)){
             cout << "Invalid name.\n";
+        }else{
+            break;
         }
-        break;
     }
     return name;
 }
@@ -30,8 +31,10 @@ int User::getUserAge(){
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }else if(age <= 10 || age >= 120){
             cout << "Must be between 10 and 120 years old.\n";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }else{
+            break;
         }
-        break;
     }
     return age;
 }
@@ -43,38 +46,61 @@ Gender User::getUserGender(){
         cin >> gen;
         if(gen.empty() || !validGender(gen)){
             cout << "Invalid input.\n";
+        }else{
+            break;
         }
     }
     return (gen == "m" || gen == "M") ? Gender::Male : Gender::Female;
 }
 
+double User::getUserHeight(){
+    string heightStr;
+    while(true){
+        cout << "Enter your height in cm: ";
+        cin >> heightStr;
+        if(heightStr.empty() || !validHeight(heightStr)){
+            cout << "Invalid height.\n";
+        }else if(stod(heightStr) < 100 || stod(heightStr) > 250){
+            cout << "Must be between 100 and 250 cm tall.\n";
+        }else{
+            break;
+        }
+    }
+    height = stod(heightStr);
+    return height;
+}
+
 double User::getUserCurrWeight(){
+    string weight;
     while(true){
         cout << "Enter your current weight in kg: ";
-        cin >> currentWeight;
-        if(cin.fail()){
-            cout << "Invalid input.\n";
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        }else if(currentWeight < 20.0 || currentWeight > 300.0){
-            cout << "The weight must be between 20 and 300 kg.\n";
+        cin >> weight;
+        if(weight.empty() || !validWeight(weight)){
+            cout << "Invalid weight.\n";
+        }else if(stod(weight) < 20 || stod(weight) > 120){
+            cout << "Must be between 20 and 120 kg.\n";
+        }else{
+            break;
         }
-        break;
     }
+    currentWeight = stod(weight);
     return currentWeight;
 }
 
 double User::getUserGoalWeight(){
+    string weight;
     while(true){
-        cout << "Enter your current weight in kg: ";
-        cin >> goalWeight;
-        if(cin.fail()){
-            cout << "Invalid input.\n";
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Enter your goal weight in kg: ";
+        cin >> weight;
+        if(weight.empty() || !validWeight(weight)){
+            cout << "Invalid weight.\n";
+        }else if(stod(weight) < 20 || stod(weight) > 120){
+            cout << "Must be between 20 and 120 kg\n";
+        }else{
+            break;
         }
-        break;
     }
+    goalWeight = stod(weight);
     return goalWeight;
 }
 
@@ -85,16 +111,18 @@ FitnessGoal User::getUserFitnessGoal(){
     cout << "2. Gain Muscle\n";
     cout << "3. Maintain Weight\n";
     while(true){
-        cout << "Enter your choice (1-3): ";
+        cout << "\nEnter your choice (1-3): ";
         cin >> choice;
         if(cin.fail() || choice < 1 || choice > 3){
             cout << "Invalid choice.\n";
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }else{
+            break;
         }
-        break;
     }
-    return (choice == 1) ? FitnessGoal::LoseWeight : (choice == 2) ? FitnessGoal::GainMuscle : FitnessGoal::MaintainWeight;
+    fitnessGoal = (choice == 1) ? FitnessGoal::LoseWeight : (choice == 2) ? FitnessGoal::GainMuscle : FitnessGoal::MaintainWeight;
+    return fitnessGoal;
 }
 
 ActivityLevel User::getUserActivityLevel(){
@@ -105,28 +133,31 @@ ActivityLevel User::getUserActivityLevel(){
     cout << "3.\tModerately Active (3-5 days exercise per week)\n";
     cout << "4.\tVery Active (6-7 days exercise per week\n";
     while(true){
-        cout << "Enter your active level [1-4]: ";
+        cout << "\nEnter your active level [1-4]: ";
         cin >> choice;
         if(cin.fail() || choice < 1 || choice > 4){
             cout << "Invalid choice.\n";
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }else{
+            break;
         }
-        break;
     }
-    return (choice == 1)
+    activityLevel = (choice == 1)
     ? ActivityLevel::Sedentary
     : (choice == 2)
     ? ActivityLevel::LightlyActive
     : (choice == 3)
     ? ActivityLevel::ModeratelyActive
     : ActivityLevel::VeryActive;
+    return activityLevel;
 }
 
 void User::getUserInfo(){
     getUsername();
     getUserAge();
     getUserGender();
+    getUserHeight();
     getUserCurrWeight();
     getUserGoalWeight();
     getUserFitnessGoal();
