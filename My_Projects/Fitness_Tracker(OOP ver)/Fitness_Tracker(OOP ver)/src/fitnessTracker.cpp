@@ -195,6 +195,7 @@ void FitnessTracker::trackWorkouts(){
         }
         if(input2 == "y" || input2 == "Y"){
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << endl;
             addWorkout();
         }
     }
@@ -371,7 +372,7 @@ void FitnessTracker::viewProgress(const double& dailyCal){
 void FitnessTracker::exitProgram(){
     string input;
     while(true){
-        cout << "Are you sure you want to exit? (y/n): ";
+        cout << "\nAre you sure you want to exit? (y/n): ";
         cin >> input;
         if(input.empty() || !validYesOrNo(input)){
             cout << "Invalid input.\n";
@@ -380,9 +381,10 @@ void FitnessTracker::exitProgram(){
         }
     }
     if(input == "y" || input == "Y"){
-        cout << "I hope you have a wonderful day. Bye!\n";
+        cout << "\nI hope you have a wonderful day. Bye!\n";
         exit(0);
     }
+    cout << endl;
 }
 
 void FitnessTracker::runProgram(){
@@ -418,7 +420,7 @@ void FitnessTracker::runProgram(){
                 exitProgram();
                 break;
         }
-    }while(choice != 8);
+    }while(true);
 }
 
 
