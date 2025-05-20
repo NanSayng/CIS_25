@@ -17,4 +17,3 @@ double calculateBMR(User& user);
 double calculateTDEE(double BMR, int activityLevel);
 // calculate calories based on user's goal
 double calculateDailyCalorie(User& user);
-

@@ -33,13 +33,13 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 add_executable(runTests
-   test/test_tracker.cpp
+   test/test_tracker.cpp   
+   test/additional_test.cpp #Tests written and added by Brandon Pelton
    src/fitnessManager.cpp
    src/getUserInfo.cpp
    src/inputValidation.cpp
    src/mealManager.cpp
-   src/menu.cpp
-)
+   src/menu.cpp)
 
 target_include_directories(runTests PRIVATE include)
 target_link_libraries(runTests PRIVATE gtest_main)
