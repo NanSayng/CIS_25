@@ -1,0 +1,8 @@
+hello world
+this is a test line
+there was an error here
+another line without issue
+error found again in this line
+just some random text
+final line with no Error
+just another line with ErROr
