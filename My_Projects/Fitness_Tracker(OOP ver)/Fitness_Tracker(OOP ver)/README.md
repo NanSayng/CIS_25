@@ -1,4 +1,5 @@
 [![Build and Test](https://github.com/NanSayng/CIS_25/actions/workflows/ci.yml/badge.svg)](https://github.com/NanSayng/CIS_25/actions/workflows/ci.yml)
+# Project Explanation Link - https://youtu.be/UJ_dlEOTi4U
 ## Health and Fitness Tracker (OOP Version)
 This is a remake of Project 1, but rewritten in Object-Oriented Programming (OOP) to improve the code structure and make it easier to manage. 
 This project is a tracker system that allows users to add meals, add workout, track meals, track workouts, remove meals, and remove workouts, and view their progress to know if they're calorie surplus or deficit based on the informations they have put in. The project also has the unit testing with Google Test.
