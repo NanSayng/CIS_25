@@ -27,14 +27,17 @@ int FitnessTracker::getMenuOption(){
     while(true){
         cout << "Enter your choice [1-8]: ";
         cin >> input;
-        if(input.empty() || !validMenuOption(input)){
-            cout << "Invalid menu option.\n";
-        }else{
+        try {
+            if(input.empty() || !validMenuOption(input)){
+                throw invalid_argument("Invalid menu option.");
+            }
+            choice = stoi(input);
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             break;
+        } catch (const invalid_argument& e) {
+            cout << "Invalid input. Please enter a number between 1 and 8.\n";
         }
     }
-    choice = stoi(input);
     return choice;
 }
 
@@ -49,16 +52,23 @@ void FitnessTracker::addMeal(){
             break;
         }
     }
+    double calories;
     while(true){
         cout << "Enter calories: ";
         cin >> caloriesStr;
-        if(caloriesStr.empty() || !validCalories(caloriesStr) || stod(caloriesStr) <= 0){
+        try{
+            calories = stod(caloriesStr);
+            if(calories <= 0){
+                cout << "Invalid calories.\n";
+            }else{
+                break;
+            }
+        }catch(const invalid_argument& e){
             cout << "Invalid calories.\n";
-        }else{
-            break;
+        }catch(const out_of_range& e){
+            cout << "Number too large. Please enter a smaller value.\n";
         }
     }
-    double calories = stod(caloriesStr);
     Meal newMeal(name, calories);
     meals.push_back(newMeal);
     cout << "\nMeal added: " << name << " (" << calories << " kcal)\n";
