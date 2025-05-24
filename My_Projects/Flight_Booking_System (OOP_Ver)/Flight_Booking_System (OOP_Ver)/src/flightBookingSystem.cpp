@@ -27,28 +27,34 @@ int FlightBookingSystem::getMenuOption(){
 }
 
 void FlightBookingSystem::loadFromPassengersFile(const string& passengersFile, unordered_map<string, unique_ptr<Passenger>>& passengers){
-    fstream file(passengersFile, ios::in | ios::binary);
-    if(!file.is_open()){
-        cout << "Error opening the passengers file.\n";
-        return;
+    try{
+        fstream file(passengersFile, ios::in | ios::binary);
+        if(!file.is_open()){
+            throw runtime_error("Error opening the passengers file.");
+            return;
+        }
+        Passenger passenger;
+        while(file.read(reinterpret_cast<char*>(&passenger), sizeof(Passenger))){
+            passengers[passenger.getPassportNumber()] = make_unique<Passenger>(passenger);
+        }
+        file.close();
     }
-    Passenger passenger;
-    while(file.read(reinterpret_cast<char*>(&passenger), sizeof(Passenger))){
-        passengers[passenger.getPassportNumber()] = make_unique<Passenger>(passenger);
+    catch(const exception& e){
+        cout << "Exception: " << e.what() << endl;
     }
-    file.close();
 }
 
 void FlightBookingSystem::loadFromSeatsFile(const string& seatsFile, map<string, shared_ptr<Seat>>& seats){
-    fstream file(seatsFile, ios::in);
-    if(!file.is_open()){
-        cout << "Error opening the seats file.\n";
-        return;
-    }
+    try{
+        fstream file(seatsFile, ios::in);
+        if(!file.is_open()){
+            throw runtime_error("Error opening the seats file.\n");
+            return;
+        }
         string seatNum;
         string seatClassStr;
         bool isBooked;
-    
+        
         while(file >> seatNum >> seatClassStr >> isBooked){
             SeatClass seatClass;
             if(seatClassStr == "First"){
@@ -72,47 +78,61 @@ void FlightBookingSystem::loadFromSeatsFile(const string& seatsFile, map<string,
                 seats[seatNum] = seat;
             }
         }
-    file.close();
+        file.close();
+    }
+    catch(const exception& e){
+        cout << "Exception: " << e.what() << endl;
+    }
 }
 
 // update to passengersFile
 void FlightBookingSystem::saveToPassengersFile(const string& passengersFile, unordered_map<string, unique_ptr<Passenger>>& passengers){
-    fstream file(passengersFile, ios::out | ios::binary);
-    if(!file.is_open()){
-        cout << "Error opening the passengers file.\n";
-        return;
-    }
-    
-    for(const auto& passengerPair : passengers){
-        const Passenger& p = *(passengerPair.second);
+    try{
+        fstream file(passengersFile, ios::out | ios::binary);
+        if(!file.is_open()){
+            throw runtime_error("Error opening the passengers file.\n");
+            return;
+        }
+        
+        for(const auto& passengerPair : passengers){
+            const Passenger& p = *(passengerPair.second);
             file.write(reinterpret_cast<const char*>(&p), sizeof(Passenger));
         }
-    file.close();
+        file.close();
+    }
+    catch(const exception& e){
+        cout << "Exception: " << e.what() << endl;
+    }
 }
 
 // update to seats file
 void FlightBookingSystem::saveToSeatsFile(const string& seatsFile, map<string, shared_ptr<Seat>>& seats){
-    fstream file(seatsFile, ios::out);
-    if(!file.is_open()){
-        cout << "Error opening the seats file.\n";
-        return;
-    }
-    for(auto& seatPair : seats){
-        if(seatPair.second->getSeatClass() == SeatClass::First){
-            file << seatPair.second->getSeatInfo() << endl;
+    try{
+        fstream file(seatsFile, ios::out);
+        if(!file.is_open()){
+            throw runtime_error("Error opening the seats file.");
+            return;
         }
-    }
-    for(auto& seatPair: seats){
-        if(seatPair.second->getSeatClass() == SeatClass::Business){
-            file << seatPair.second->getSeatInfo() << endl;
+        for(auto& seatPair : seats){
+            if(seatPair.second->getSeatClass() == SeatClass::First){
+                file << seatPair.second->getSeatInfo() << endl;
+            }
         }
-    }
-    for(auto& seatPair: seats){
-        if(seatPair.second->getSeatClass() == SeatClass::Economy){
-            file << seatPair.second->getSeatInfo() << endl;
+        for(auto& seatPair: seats){
+            if(seatPair.second->getSeatClass() == SeatClass::Business){
+                file << seatPair.second->getSeatInfo() << endl;
+            }
         }
+        for(auto& seatPair: seats){
+            if(seatPair.second->getSeatClass() == SeatClass::Economy){
+                file << seatPair.second->getSeatInfo() << endl;
+            }
+        }
+        file.close();
     }
-    file.close();
+    catch(const exception& e){
+        cout << "Exception: " << e.what() << endl;
+    }
 }
 
 void FlightBookingSystem::viewFlightSeats(){
@@ -176,127 +196,137 @@ void FlightBookingSystem::viewPassengersList(){
 }
 
 void FlightBookingSystem::bookFlightSeat() {
-    Passenger newPassenger;
-    cout << "\nBooking a Seat...\n\n";
-    int choice;
-
-    string name, contact, passport, seatNumber;
-    int age;
-
-    // get valid name
-    while (true) {
-        cout << "Enter passenger name: ";
+    try{
+        Passenger newPassenger;
+        cout << "\nBooking a Seat...\n\n";
+        int choice;
+        
+        string name, contact, passport, seatNumber;
+        int age;
+        
+        // get valid name
+        while (true) {
+            cout << "Enter passenger name: ";
+            cin.ignore();
+            getline(cin, name);
+            if (name.empty() || !isValidName(name)) {
+                cout << "Invalid name.\n";
+            } else {
+                newPassenger.setName(name.c_str());
+                break;
+            }
+        }
+        
+        // get valid age
+        while (true) {
+            cout << "Enter age: ";
+            cin >> age;
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input. Please enter a valid age.\n";
+            } else if (age < 12) {
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Under the age of 12 years old cannot book a flight.\n";
+            } else if (age > 100) {
+                cout << "Too old to book the flight.\n";
+            } else {
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                newPassenger.setAge(age);
+                break;
+            }
+        }
+        
+        // get valid contact number
+        while (true) {
+            cout << "Enter phone number (510*******): ";
+            getline(cin, contact);
+            if (contact.empty() || !isValidContact(contact)) {
+                cout << "Invalid contact. Please enter 10 digits number.\n";
+            } else {
+                newPassenger.setContact(contact.c_str());
+                break;
+            }
+        }
+        
+        // get valid passport number
+        while (true) {
+            cout << "Enter passport number (e.g., A123456): ";
+            getline(cin, passport);
+            if (passport.empty() || !isValidPassNum(passport)) {
+                cout << "Invalid passport number. Enter length of 6 to 9.\n";
+            } else {
+                newPassenger.setPassportNumber(passport.c_str());
+                break;
+            }
+        }
+        
+        // Select seat class
+        cout << "\n\nSelect seat class:\n";
+        cout << "1.\tFirst Class\n";
+        cout << "2.\tBusiness Class\n";
+        cout << "3.\tEconomy Class\n";
+        cout << "\nEnter your choice: ";
+        cin >> choice;
+        
+        if (choice == 1) {
+            newPassenger.setSeatClass(SeatClass::First);
+        } else if (choice == 2) {
+            newPassenger.setSeatClass(SeatClass::Business);
+        } else {
+            newPassenger.setSeatClass(SeatClass::Economy);
+        }
+        
         cin.ignore();
-        getline(cin, name);
-        if (name.empty() || !isValidName(name)) {
-            cout << "Invalid name.\n";
+        
+        // get valid seat number
+        while (true) {
+            if(newPassenger.getSeatClass() == SeatClass::First){
+                cout << "\n\nEnter seat number to book (1A - 5A): ";
+            }else if(newPassenger.getSeatClass() == SeatClass::Business){
+                cout << "\n\nEnter seat number to book (1B - 5B): ";
+            }else{
+                cout << "\n\nEnter seat number to book (1C - 5C): ";
+            }
+            getline(cin, seatNumber);
+            if (seatNumber.empty() || !isValidSeatNum(seatNumber)) {
+                cout << "Invalid seat number. Please try again.\n";
+            } else {
+                newPassenger.setSeatNumber(seatNumber.c_str());
+                break;
+            }
+        }
+        
+        // check and book the seat
+        string seatKey = newPassenger.getSeatNumber();
+        if (seats.find(seatKey) != seats.end()) {
+            if (!seats[seatKey]->getBookingStatus() &&
+                seats[seatKey]->getSeatClass() == newPassenger.getSeatClass()) {
+                seats[seatKey]->setBookingStatus(true);
+                cout << "\nSeat " << seatKey << " has been successfully booked for "
+                << newPassenger.getName() << endl;
+            }else{
+                if(seats[seatKey]->getSeatClass() != newPassenger.getSeatClass()){
+                    throw logic_error("Seat class does not match passenger choice.\n");
+                }
+                if(seats[seatKey]->getBookingStatus()){
+                    throw logic_error("Seat is already booked.\n");
+                }
+            }
         } else {
-            newPassenger.setName(name.c_str());
-            break;
+                throw invalid_argument("Invalid seat number.\n");
         }
+        
+        // save info to passengers map
+        passengers[newPassenger.getPassportNumber()] = make_unique<Passenger>(newPassenger);
+        
+        // update files
+        saveToSeatsFile(getSeatsFile(), getSeats());
+        saveToPassengersFile(getPassengersFile(), getPassengers());
     }
-
-    // get valid age
-    while (true) {
-        cout << "Enter age: ";
-        cin >> age;
-        if (cin.fail()) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Invalid input. Please enter a valid age.\n";
-        } else if (age < 12) {
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Under the age of 12 years old cannot book a flight.\n";
-        } else if (age > 100) {
-            cout << "Too old to book the flight.\n";
-        } else {
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            newPassenger.setAge(age);
-            break;
-        }
+    catch(const exception& e){
+        cout << "Booking failed: " << e.what() << endl;
     }
-
-    // get valid contact number
-    while (true) {
-        cout << "Enter phone number (510*******): ";
-        getline(cin, contact);
-        if (contact.empty() || !isValidContact(contact)) {
-            cout << "Invalid contact. Please enter 10 digits number.\n";
-        } else {
-            newPassenger.setContact(contact.c_str());
-            break;
-        }
-    }
-
-    // get valid passport number
-    while (true) {
-        cout << "Enter passport number (e.g., A123456): ";
-        getline(cin, passport);
-        if (passport.empty() || !isValidPassNum(passport)) {
-            cout << "Invalid passport number. Enter length of 6 to 9.\n";
-        } else {
-            newPassenger.setPassportNumber(passport.c_str());
-            break;
-        }
-    }
-
-    // Select seat class
-    cout << "\n\nSelect seat class:\n";
-    cout << "1.\tFirst Class\n";
-    cout << "2.\tBusiness Class\n";
-    cout << "3.\tEconomy Class\n";
-    cout << "\nEnter your choice: ";
-    cin >> choice;
-
-    if (choice == 1) {
-        newPassenger.setSeatClass(SeatClass::First);
-    } else if (choice == 2) {
-        newPassenger.setSeatClass(SeatClass::Business);
-    } else {
-        newPassenger.setSeatClass(SeatClass::Economy);
-    }
-
-    cin.ignore();
-
-    // get valid seat number
-    while (true) {
-        if(newPassenger.getSeatClass() == SeatClass::First){
-            cout << "\n\nEnter seat number to book (1A - 5A): ";
-        }else if(newPassenger.getSeatClass() == SeatClass::Business){
-            cout << "\n\nEnter seat number to book (1B - 5B): ";
-        }else{
-            cout << "\n\nEnter seat number to book (1C - 5C): ";
-        }
-        getline(cin, seatNumber);
-        if (seatNumber.empty() || !isValidSeatNum(seatNumber)) {
-            cout << "Invalid seat number. Please try again.\n";
-        } else {
-            newPassenger.setSeatNumber(seatNumber.c_str());
-            break;
-        }
-    }
-
-    // check and book the seat
-    string seatKey = newPassenger.getSeatNumber();
-    if (seats.find(seatKey) != seats.end()) {
-        if (!seats[seatKey]->getBookingStatus() &&
-            seats[seatKey]->getSeatClass() == newPassenger.getSeatClass()) {
-            seats[seatKey]->setBookingStatus(true);
-            cout << "\nSeat " << seatKey << " has been successfully booked for "
-                 << newPassenger.getName() << endl;
-        } else {
-            cout << "Seat " << seatKey << " is already booked or doesn't match seat class.\n";
-        }
-    } else {
-        cout << "\nInvalid seat number.\n";
-    }
-
-    // save info to passengers map
-    passengers[newPassenger.getPassportNumber()] = make_unique<Passenger>(newPassenger);
-
-    // update files
-    saveToSeatsFile(getSeatsFile(), getSeats());
-    saveToPassengersFile(getPassengersFile(), getPassengers());
 }
 
 void FlightBookingSystem::cancelBooking(){

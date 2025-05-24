@@ -4,6 +4,7 @@ using namespace std;
 
 enum class SeatClass {First, Business, Economy};
 
+// base class
 class Seat {
 protected:
     string seatNumber;
@@ -11,48 +12,40 @@ protected:
     SeatClass seatClass;
 
 public:
-    Seat(SeatClass seatClass, const string& seatNumber, bool isBooked)
-    : seatClass(seatClass), seatNumber(seatNumber), isBooked(isBooked) {}
+    Seat(SeatClass seatClass, const string& seatNumber, bool isBooked);
     
     // setter
-    void setSeatNumber(const string& newSeatNumber) { seatNumber = newSeatNumber; }
-    void setSeatClass(SeatClass newSeatClass) { seatClass = newSeatClass; }
-    void setBookingStatus(bool booked) { isBooked = booked; }
+    void setSeatNumber(const string& newSeatNumber);
+    void setSeatClass(SeatClass newSeatClass);
+    void setBookingStatus(bool booked);
+    
     // getter
-    bool getBookingStatus() const { return isBooked; }
-    SeatClass getSeatClass() const { return seatClass; }
-    string getSeatNumber() const { return seatNumber; }
+    bool getBookingStatus() const;
+    SeatClass getSeatClass() const;
+    string getSeatNumber() const;
     
     // Polymorphism
-    virtual string getSeatInfo() const{
-        return seatNumber + " First " + (isBooked ? "1" : "0");
-    }
-
+    virtual string getSeatInfo() const;
     virtual ~Seat() {}
 };
 
+// inheritance classes of Seat
 class FirstClassSeat : public Seat {
 public:
-    FirstClassSeat(const string& num) : Seat(SeatClass::First, num, false) {}
-    string getSeatInfo() const override{
-        return seatNumber + " First " + (isBooked ? "1" : "0");
-    }
+    FirstClassSeat(const string& num);
+    string getSeatInfo() const override;
 };
 
 class BusinessClassSeat : public Seat {
 public:
-    BusinessClassSeat(const string& num) : Seat(SeatClass::Business, num, false) {}
-    string getSeatInfo() const override{
-        return seatNumber + " Business " + (isBooked ? "1" : "0");
-    }
+    BusinessClassSeat(const string& num);
+    string getSeatInfo() const override;
 };
 
 class EconomyClassSeat : public Seat {
 public:
-    EconomyClassSeat(const string& num) : Seat(SeatClass::Economy, num, false) {}
-    string getSeatInfo() const override{
-        return seatNumber + " Economy " + (isBooked ? "1" : "0");
-    }
+    EconomyClassSeat(const string& num);
+    string getSeatInfo() const override;
 };
 
 
