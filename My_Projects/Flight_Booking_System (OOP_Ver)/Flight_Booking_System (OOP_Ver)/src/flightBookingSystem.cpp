@@ -99,17 +99,17 @@ void FlightBookingSystem::saveToSeatsFile(const string& seatsFile, map<string, s
     }
     for(auto& seatPair : seats){
         if(seatPair.second->getSeatClass() == SeatClass::First){
-            file << seatPair.second->getSeatNumber() << " First " << seatPair.second->getBookingStatus() << endl;
+            file << seatPair.second->getSeatInfo() << endl;
         }
     }
     for(auto& seatPair: seats){
         if(seatPair.second->getSeatClass() == SeatClass::Business){
-            file << seatPair.second->getSeatNumber() << " Business " << seatPair.second->getBookingStatus() << endl;
+            file << seatPair.second->getSeatInfo() << endl;
         }
     }
     for(auto& seatPair: seats){
         if(seatPair.second->getSeatClass() == SeatClass::Economy){
-            file << seatPair.second->getSeatNumber() << " Economy " << seatPair.second->getBookingStatus() << endl;
+            file << seatPair.second->getSeatInfo() << endl;
         }
     }
     file.close();

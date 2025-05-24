@@ -15,6 +15,7 @@ private:
     string passengersFile = "passengers.dat";
     string seatsFile = "seats.txt";
 public:
+    FlightBookingSystem() {}
     void displayMenu();
     int getMenuOption();
     // getter
